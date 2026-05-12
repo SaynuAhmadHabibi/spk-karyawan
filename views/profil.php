@@ -1,4 +1,7 @@
-<?php include 'views/layouts/header.php'; ?>
+<?php
+$page_title = $page_title ?? 'Profil Saya';
+include __DIR__ . '/layouts/header.php';
+?>
 
 <?php
 $photo    = $user['photo'] ?? null;
@@ -196,4 +199,4 @@ function togglePwdForm() {
 }
 </script>
 
-<?php include 'views/layouts/footer.php'; ?>
+<?php include __DIR__ . '/layouts/footer.php'; ?>

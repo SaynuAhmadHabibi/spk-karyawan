@@ -18,7 +18,7 @@ class ProfilController {
         $stmt->execute([$user['id']]);
         $user = $stmt->fetch();
         $_SESSION['user'] = $user;
-        include 'views/profil.php';
+        include __DIR__ . '/../views/profil.php';
     }
 
     public function uploadPhoto() {

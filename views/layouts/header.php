@@ -40,7 +40,6 @@ $roleInfo = match($role) {
 
 // ── Menu definition per role ──────────────────────────────────────────────
 $allMenus = [
-    // id, label, icon, href, active-match, roles[]
     ['id'=>'dashboard',  'label'=>'Dashboard',       'icon'=>'bi-grid-1x2-fill',       'href'=>'index.php?act=dashboard',          'match'=>['dashboard'],                            'roles'=>['admin','hrd','direktur','user']],
     ['id'=>'karyawan',   'label'=>'Data Karyawan',   'icon'=>'bi-people-fill',          'href'=>'index.php?act=karyawan',           'match'=>['karyawan'],                             'roles'=>['admin','hrd']],
     ['id'=>'penilaian',  'label'=>'Penilaian',       'icon'=>'bi-pencil-square',        'href'=>'index.php?act=penilaian_input',    'match'=>['penilaian_input','penilaian_history'],   'roles'=>['admin','hrd']],
@@ -59,122 +58,112 @@ function isActive(array $item, string $act): bool {
 ?>
 
 <!-- ════════════════════════════════════════════════════════════
-     APP SHELL
+     NAVBAR LAYOUT
      ════════════════════════════════════════════════════════════ -->
-<div class="app-shell">
 
-    <!-- ── SIDEBAR (desktop) ─────────────────────────────────── -->
-    <aside id="sidebar" class="sidebar">
+<!-- ── TOP NAVBAR ──────────────────────────────────────────── -->
+<header class="navbar-main">
+    <div class="navbar-inner">
         <!-- Logo -->
-        <div class="sidebar-logo">
-            <a href="index.php?act=dashboard" class="flex items-center gap-3 min-w-0">
-                <img src="assets/img/logo.png" alt="Logo" class="sidebar-logo-img">
-                <div class="sidebar-logo-text">
-                    <span class="block text-sm font-bold text-white leading-tight">SPK TOPSIS</span>
-                    <span class="block text-[10px] text-slate-500 tracking-wider">PT. Swadarma Griyasatya</span>
-                </div>
-            </a>
-            <button id="sidebarToggle" class="sidebar-toggle-btn" title="Toggle Sidebar">
-                <i class="bi bi-layout-sidebar-reverse text-base"></i>
-            </button>
-        </div>
-
-        <!-- Role badge -->
-        <div class="sidebar-role">
-            <div class="sidebar-role-badge" style="color:<?= $roleInfo['color'] ?>;background:<?= $roleInfo['bg'] ?>;">
-                <i class="bi bi-shield-fill-check text-[10px]"></i>
-                <span class="sidebar-role-label"><?= $roleInfo['label'] ?></span>
+        <a href="index.php?act=dashboard" class="navbar-brand">
+            <img src="assets/img/logo.png" alt="Logo" class="navbar-brand-img">
+            <div class="navbar-brand-text">
+                <span class="navbar-brand-title">SPK TOPSIS</span>
+                <span class="navbar-brand-sub">PT. Swadarma Griyasatya</span>
             </div>
-        </div>
+        </a>
 
-        <!-- Nav items -->
-        <nav class="sidebar-nav">
-            <p class="sidebar-section-label">MENU UTAMA</p>
+        <!-- Desktop Menu -->
+        <nav class="navbar-menu" id="navbarMenu">
             <?php foreach ($menus as $m):
                 $active = isActive($m, $currentAct);
             ?>
             <a href="<?= $m['href'] ?>"
                id="menu-<?= $m['id'] ?>"
-               class="sidebar-link <?= $active ? 'active' : '' ?>"
+               class="navbar-menu-item <?= $active ? 'active' : '' ?>"
                title="<?= htmlspecialchars($m['label']) ?>">
-                <i class="bi <?= $m['icon'] ?> sidebar-link-icon"></i>
-                <span class="sidebar-link-label"><?= htmlspecialchars($m['label']) ?></span>
-                <?php if ($active): ?>
-                <span class="sidebar-link-dot"></span>
-                <?php endif; ?>
+                <i class="bi <?= $m['icon'] ?> navbar-menu-icon"></i>
+                <span class="navbar-menu-label"><?= htmlspecialchars($m['label']) ?></span>
             </a>
             <?php endforeach; ?>
         </nav>
 
-        <!-- Logout -->
-        <div class="sidebar-footer">
-            <a href="index.php?act=logout" class="sidebar-logout" title="Keluar">
-                <i class="bi bi-box-arrow-right sidebar-link-icon"></i>
-                <span class="sidebar-link-label">Keluar</span>
-            </a>
+        <!-- Right side: flash + user -->
+        <div class="navbar-right">
+            <!-- Flash messages -->
+            <?php if (isset($_SESSION['success'])): ?>
+            <div class="flash-msg flash-success">
+                <i class="bi bi-check-circle-fill"></i>
+                <span><?= htmlspecialchars($_SESSION['success']) ?></span>
+            </div>
+            <?php unset($_SESSION['success']); endif; ?>
+            <?php if (isset($_SESSION['error'])): ?>
+            <div class="flash-msg flash-danger">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <span><?= htmlspecialchars($_SESSION['error']) ?></span>
+            </div>
+            <?php unset($_SESSION['error']); endif; ?>
+
+            <!-- User avatar & dropdown -->
+            <div class="topbar-user-wrap" id="userDropdownToggle">
+                <?php $userPhoto = $_SESSION['user']['photo'] ?? null; ?>
+                <div class="topbar-avatar" style="background:linear-gradient(135deg,<?= $roleInfo['color'] ?>,#22574f);overflow:hidden;padding:0">
+                    <?php if ($userPhoto): ?>
+                    <img src="assets/uploads/photos/<?= htmlspecialchars($userPhoto) ?>"
+                         alt="Foto" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+                    <?php else: ?>
+                    <span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:inherit;font-weight:inherit"><?= $initial ?></span>
+                    <?php endif; ?>
+                </div>
+                <div class="topbar-user-info">
+                    <span class="topbar-username"><?= htmlspecialchars(ucfirst($uname)) ?></span>
+                    <span class="topbar-role" style="color:<?= $roleInfo['color'] ?>"><?= $roleInfo['label'] ?></span>
+                </div>
+                <i class="bi bi-chevron-down text-xs text-slate-500 transition-transform duration-200" id="userChevron"></i>
+            </div>
+            <!-- Dropdown -->
+            <div id="userDropdown" class="user-dropdown hidden">
+                <a href="index.php?act=profil" class="user-dropdown-item">
+                    <i class="bi bi-person-circle"></i> Profil Saya
+                </a>
+                <div class="user-dropdown-divider"></div>
+                <a href="index.php?act=logout" class="user-dropdown-item text-red-400 hover:bg-red-500/10">
+                    <i class="bi bi-box-arrow-right"></i> Keluar
+                </a>
+            </div>
+
+            <!-- Mobile hamburger -->
+            <button id="mobileMenuBtn" class="navbar-hamburger" title="Menu">
+                <i class="bi bi-list text-xl"></i>
+            </button>
         </div>
-    </aside>
+    </div>
 
-    <!-- ── MAIN AREA ──────────────────────────────────────────── -->
-    <div class="main-area">
+    <!-- Mobile Dropdown Menu -->
+    <nav class="navbar-mobile-menu hidden" id="mobileMenu">
+        <?php foreach ($menus as $m):
+            $active = isActive($m, $currentAct);
+        ?>
+        <a href="<?= $m['href'] ?>"
+           class="navbar-mobile-item <?= $active ? 'active' : '' ?>">
+            <i class="bi <?= $m['icon'] ?> navbar-mobile-icon"></i>
+            <span><?= htmlspecialchars($m['label']) ?></span>
+        </a>
+        <?php endforeach; ?>
+        <div class="navbar-mobile-divider"></div>
+        <a href="index.php?act=logout" class="navbar-mobile-item navbar-mobile-logout">
+            <i class="bi bi-box-arrow-right navbar-mobile-icon"></i>
+            <span>Keluar</span>
+        </a>
+    </nav>
+</header>
 
-        <!-- TOPBAR -->
-        <header class="topbar">
-            <div class="topbar-left">
-                <!-- Mobile hamburger -->
-                <button id="mobileMenuBtn" class="topbar-icon-btn md:hidden" title="Menu">
-                    <i class="bi bi-list text-xl"></i>
-                </button>
-                <!-- Page title -->
-                <div>
-                    <h1 class="topbar-title"><?= htmlspecialchars($page_title ?? 'Dashboard') ?></h1>
-                    <p class="topbar-breadcrumb"><i class="bi bi-house-fill mr-1"></i>SPK TOPSIS / <?= htmlspecialchars($page_title ?? 'Dashboard') ?></p>
-                </div>
-            </div>
-            <div class="topbar-right">
-                <!-- Flash messages -->
-                <?php if (isset($_SESSION['success'])): ?>
-                <div class="flash-msg flash-success">
-                    <i class="bi bi-check-circle-fill"></i>
-                    <span><?= htmlspecialchars($_SESSION['success']) ?></span>
-                </div>
-                <?php unset($_SESSION['success']); endif; ?>
-                <?php if (isset($_SESSION['error'])): ?>
-                <div class="flash-msg flash-danger">
-                    <i class="bi bi-exclamation-triangle-fill"></i>
-                    <span><?= htmlspecialchars($_SESSION['error']) ?></span>
-                </div>
-                <?php unset($_SESSION['error']); endif; ?>
+<!-- ── MAIN CONTENT AREA ──────────────────────────────────── -->
+<div class="navbar-layout">
+    <!-- Breadcrumb -->
+    <div class="navbar-breadcrumb-bar">
+        <p class="topbar-breadcrumb"><i class="bi bi-house-fill mr-1"></i>SPK TOPSIS / <?= htmlspecialchars($page_title ?? 'Dashboard') ?></p>
+    </div>
 
-                <!-- User avatar & dropdown -->
-                <div class="topbar-user-wrap" id="userDropdownToggle">
-                    <?php $userPhoto = $_SESSION['user']['photo'] ?? null; ?>
-                    <div class="topbar-avatar" style="background:linear-gradient(135deg,<?= $roleInfo['color'] ?>,#22574f);overflow:hidden;padding:0">
-                        <?php if ($userPhoto): ?>
-                        <img src="assets/uploads/photos/<?= htmlspecialchars($userPhoto) ?>"
-                             alt="Foto" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
-                        <?php else: ?>
-                        <span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:inherit;font-weight:inherit"><?= $initial ?></span>
-                        <?php endif; ?>
-                    </div>
-                    <div class="topbar-user-info">
-                        <span class="topbar-username"><?= htmlspecialchars(ucfirst($uname)) ?></span>
-                        <span class="topbar-role" style="color:<?= $roleInfo['color'] ?>"><?= $roleInfo['label'] ?></span>
-                    </div>
-                    <i class="bi bi-chevron-down text-xs text-slate-500 transition-transform duration-200" id="userChevron"></i>
-                </div>
-                <!-- Dropdown -->
-                <div id="userDropdown" class="user-dropdown hidden">
-                    <a href="index.php?act=profil" class="user-dropdown-item">
-                        <i class="bi bi-person-circle"></i> Profil Saya
-                    </a>
-                    <div class="user-dropdown-divider"></div>
-                    <a href="index.php?act=logout" class="user-dropdown-item text-red-400 hover:bg-red-500/10">
-                        <i class="bi bi-box-arrow-right"></i> Keluar
-                    </a>
-                </div>
-            </div>
-        </header>
-
-        <!-- PAGE CONTENT -->
-        <main class="page-content">
+    <!-- PAGE CONTENT -->
+    <main class="page-content-navbar">

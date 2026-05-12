@@ -17,11 +17,8 @@ class UserController {
             exit;
         }
         $page_title = 'Manajemen Pengguna';
-        $allUsers = $this->userModel->getAll();
+        $users = $this->userModel->getAll();
         $currentUserId = $_SESSION['user']['id'];
-        $users = array_filter($allUsers, function($u) use ($currentUserId) {
-            return $u['id'] != $currentUserId; // tampilkan semua kecuali diri sendiri
-        });
         include __DIR__ . '/../views/user/index.php';
     }
 

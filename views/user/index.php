@@ -1,4 +1,6 @@
-<?php include __DIR__ . '/../layouts/header.php'; ?>
+<?php 
+$page_title = $page_title ?? 'Manajemen Pengguna';
+include __DIR__ . '/../layouts/header.php'; ?>
 
 <div class="mb-6 flex items-center justify-between">
     <div>

@@ -30,6 +30,82 @@ try {
         PDO::ATTR_EMULATE_PREPARES   => false,
     ];
     $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+
+    // ── Auto-create required tables ──────────────────────────────────
+    $pdo->exec("CREATE TABLE IF NOT EXISTS `users` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `username` varchar(100) NOT NULL,
+        `password` varchar(255) NOT NULL,
+        `role` varchar(50) NOT NULL DEFAULT 'user',
+        `photo` varchar(255) DEFAULT NULL,
+        PRIMARY KEY (`id`),
+        UNIQUE KEY `unik_username` (`username`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+
+    $pdo->exec("CREATE TABLE IF NOT EXISTS `karyawan` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `nik` varchar(50) NOT NULL,
+        `nama` varchar(100) NOT NULL,
+        `jabatan` varchar(100) DEFAULT NULL,
+        `divisi` varchar(100) DEFAULT NULL,
+        `tanggal_masuk` date DEFAULT NULL,
+        `status` enum('aktif','nonaktif') DEFAULT 'aktif',
+        PRIMARY KEY (`id`),
+        UNIQUE KEY `unik_nik` (`nik`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+
+    $pdo->exec("CREATE TABLE IF NOT EXISTS `kriteria` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `nama_kriteria` varchar(100) NOT NULL,
+        `bobot` decimal(5,2) NOT NULL,
+        `atribut` enum('benefit','cost') NOT NULL,
+        PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+
+    $pdo->exec("CREATE TABLE IF NOT EXISTS `penilaian` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `id_karyawan` int(11) NOT NULL,
+        `id_kriteria` int(11) NOT NULL,
+        `nilai` decimal(8,2) NOT NULL,
+        `periode_bulan` date NOT NULL,
+        `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+        PRIMARY KEY (`id`),
+        UNIQUE KEY `unik_penilaian` (`id_karyawan`,`id_kriteria`,`periode_bulan`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+
+    $pdo->exec("CREATE TABLE IF NOT EXISTS `hasil_topsis` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `id_karyawan` int(11) NOT NULL,
+        `nilai` decimal(10,6) NOT NULL,
+        `ranking` int(11) DEFAULT NULL,
+        `tipe` enum('reward','punishment') NOT NULL,
+        `periode` date DEFAULT NULL,
+        `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+        PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+
+    // ── Pastikan user admin selalu ada ──────────────────────────────
+    // Hapus semua user lama, buat 1 user admin saja
+    $userCount = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
+    if ($userCount == 0) {
+        $pdo->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)")
+            ->execute(['admin', password_hash('admin', PASSWORD_DEFAULT), 'admin']);
+    } else {
+        // Pastikan user admin ada dan password-nya benar
+        $stmtCheck = $pdo->prepare("SELECT id, password FROM users WHERE username = 'admin'");
+        $stmtCheck->execute();
+        $adminUser = $stmtCheck->fetch();
+        if (!$adminUser) {
+            // Admin belum ada → buat
+            $pdo->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)")
+                ->execute(['admin', password_hash('admin', PASSWORD_DEFAULT), 'admin']);
+        } elseif (!password_verify('admin', $adminUser['password'])) {
+            // Password admin tidak valid → perbaiki
+            $pdo->prepare("UPDATE users SET password = ? WHERE id = ?")
+                ->execute([password_hash('admin', PASSWORD_DEFAULT), $adminUser['id']]);
+        }
+    }
+
 } catch (PDOException $e) {
     die('<div style="font-family:sans-serif;padding:2rem;color:#dc2626;">
         <h2>Koneksi Database Gagal</h2>

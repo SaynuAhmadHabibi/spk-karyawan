@@ -1,6 +1,5 @@
-        </main><!-- end page-content -->
-    </div><!-- end main-area -->
-</div><!-- end app-shell -->
+    </main><!-- end page-content-navbar -->
+</div><!-- end navbar-layout -->
 
 <!-- ════════════════════════════════════════════════════════════
      BOTTOM NAVIGATION (mobile only)
@@ -38,51 +37,7 @@ $bottomMenus = array_slice($filtered, 0, 5);
     </div>
 </nav>
 
-<!-- Mobile Sidebar Overlay -->
-<div id="mobileSidebarOverlay" class="mobile-overlay hidden" onclick="closeMobileSidebar()"></div>
-
 <script>
-// ── Sidebar collapse (desktop) ─────────────────────────────────────────────
-const sidebar   = document.getElementById('sidebar');
-const mainArea  = document.querySelector('.main-area');
-const toggleBtn = document.getElementById('sidebarToggle');
-let collapsed   = localStorage.getItem('sidebarCollapsed') === '1';
-
-function applySidebar() {
-    if (collapsed) {
-        sidebar.classList.add('collapsed');
-        mainArea.classList.add('sidebar-collapsed');
-    } else {
-        sidebar.classList.remove('collapsed');
-        mainArea.classList.remove('sidebar-collapsed');
-    }
-}
-applySidebar();
-
-if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => {
-        collapsed = !collapsed;
-        localStorage.setItem('sidebarCollapsed', collapsed ? '1' : '0');
-        applySidebar();
-    });
-}
-
-// ── Mobile sidebar toggle ──────────────────────────────────────────────────
-const mobileBtn     = document.getElementById('mobileMenuBtn');
-const mobileOverlay = document.getElementById('mobileSidebarOverlay');
-
-function openMobileSidebar() {
-    sidebar.classList.add('mobile-open');
-    mobileOverlay.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-}
-function closeMobileSidebar() {
-    sidebar.classList.remove('mobile-open');
-    mobileOverlay.classList.add('hidden');
-    document.body.style.overflow = '';
-}
-if (mobileBtn) mobileBtn.addEventListener('click', openMobileSidebar);
-
 // ── User dropdown ──────────────────────────────────────────────────────────
 const dropToggle  = document.getElementById('userDropdownToggle');
 const dropdown    = document.getElementById('userDropdown');
@@ -97,6 +52,30 @@ if (dropToggle) {
     document.addEventListener('click', () => {
         dropdown.classList.add('hidden');
         chevron.style.transform = '';
+    });
+}
+
+// ── Mobile menu toggle ─────────────────────────────────────────────────────
+const mobileBtn   = document.getElementById('mobileMenuBtn');
+const mobileMenu  = document.getElementById('mobileMenu');
+
+if (mobileBtn) {
+    mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('hidden');
+        // toggle icon
+        const icon = mobileBtn.querySelector('i');
+        if (mobileMenu.classList.contains('hidden')) {
+            icon.className = 'bi bi-list text-xl';
+        } else {
+            icon.className = 'bi bi-x-lg text-xl';
+        }
+    });
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileBtn.contains(e.target)) {
+            mobileMenu.classList.add('hidden');
+            mobileBtn.querySelector('i').className = 'bi bi-list text-xl';
+        }
     });
 }
 
