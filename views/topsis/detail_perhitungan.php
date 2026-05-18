@@ -44,9 +44,9 @@ if ($tipe === 'punishment') {
             <table style="width:100%;border-collapse:separate;border-spacing:0;font-size:12px">
                 <thead style="position:sticky;top:0;z-index:2">
                     <tr>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:left;border-bottom:1px solid var(--card-border);white-space:nowrap">Alternatif</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:left;border-bottom:1px solid var(--card-border);white-space:nowrap">Alternatif</th>
                         <?php foreach ($kriteria as $k): ?>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border);white-space:nowrap"><?= htmlspecialchars($k['nama_kriteria']) ?></th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border);white-space:nowrap"><?= htmlspecialchars($k['nama_kriteria']) ?></th>
                         <?php endforeach; ?>
                     </tr>
                 </thead>
@@ -55,7 +55,7 @@ if ($tipe === 'punishment') {
                     <tr style="transition:.15s">
                         <td style="padding:7px 14px;color:#fff;font-weight:500;border-bottom:1px solid rgba(255,255,255,.03);white-space:nowrap"><?= htmlspecialchars($karyawan[$i]['nama'] ?? '-') ?></td>
                         <?php foreach ($row as $val): ?>
-                        <td style="padding:7px 14px;color:#8b949e;font-family:monospace;text-align:right;border-bottom:1px solid rgba(255,255,255,.03)"><?= number_format((float)$val, 2) ?></td>
+                        <td style="padding:7px 14px;color:#c0c8d2;font-family:monospace;text-align:right;border-bottom:1px solid rgba(255,255,255,.03)"><?= number_format((float)$val, 2) ?></td>
                         <?php endforeach; ?>
                     </tr>
                     <?php endforeach; ?>
@@ -77,9 +77,9 @@ if ($tipe === 'punishment') {
             <table style="width:100%;border-collapse:separate;border-spacing:0;font-size:12px">
                 <thead style="position:sticky;top:0;z-index:2">
                     <tr>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:left;border-bottom:1px solid var(--card-border);white-space:nowrap">Alternatif</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:left;border-bottom:1px solid var(--card-border);white-space:nowrap">Alternatif</th>
                         <?php foreach ($kriteria as $k): ?>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border);white-space:nowrap"><?= htmlspecialchars($k['nama_kriteria']) ?></th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border);white-space:nowrap"><?= htmlspecialchars($k['nama_kriteria']) ?></th>
                         <?php endforeach; ?>
                     </tr>
                 </thead>
@@ -88,7 +88,7 @@ if ($tipe === 'punishment') {
                     <tr style="transition:.15s">
                         <td style="padding:7px 14px;color:#fff;font-weight:500;border-bottom:1px solid rgba(255,255,255,.03);white-space:nowrap"><?= htmlspecialchars($karyawan[$i]['nama'] ?? '-') ?></td>
                         <?php foreach ($row as $val): ?>
-                        <td style="padding:7px 14px;color:#8b949e;font-family:monospace;text-align:right;border-bottom:1px solid rgba(255,255,255,.03)"><?= number_format((float)$val, 4) ?></td>
+                        <td style="padding:7px 14px;color:#c0c8d2;font-family:monospace;text-align:right;border-bottom:1px solid rgba(255,255,255,.03)"><?= number_format((float)$val, 4) ?></td>
                         <?php endforeach; ?>
                     </tr>
                     <?php endforeach; ?>
@@ -110,9 +110,9 @@ if ($tipe === 'punishment') {
             <table style="width:100%;border-collapse:separate;border-spacing:0;font-size:12px">
                 <thead style="position:sticky;top:0;z-index:2">
                     <tr>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:left;border-bottom:1px solid var(--card-border);white-space:nowrap">Alternatif</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:left;border-bottom:1px solid var(--card-border);white-space:nowrap">Alternatif</th>
                         <?php foreach ($kriteria as $k): ?>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border);white-space:nowrap"><?= htmlspecialchars($k['nama_kriteria']) ?></th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border);white-space:nowrap"><?= htmlspecialchars($k['nama_kriteria']) ?></th>
                         <?php endforeach; ?>
                     </tr>
                 </thead>
@@ -121,7 +121,7 @@ if ($tipe === 'punishment') {
                     <tr style="transition:.15s">
                         <td style="padding:7px 14px;color:#fff;font-weight:500;border-bottom:1px solid rgba(255,255,255,.03);white-space:nowrap"><?= htmlspecialchars($karyawan[$i]['nama'] ?? '-') ?></td>
                         <?php foreach ($row as $val): ?>
-                        <td style="padding:7px 14px;color:#8b949e;font-family:monospace;text-align:right;border-bottom:1px solid rgba(255,255,255,.03)"><?= number_format((float)$val, 4) ?></td>
+                        <td style="padding:7px 14px;color:#c0c8d2;font-family:monospace;text-align:right;border-bottom:1px solid rgba(255,255,255,.03)"><?= number_format((float)$val, 4) ?></td>
                         <?php endforeach; ?>
                     </tr>
                     <?php endforeach; ?>
@@ -140,21 +140,21 @@ if ($tipe === 'punishment') {
             <div class="px-5 py-3 space-y-1">
                 <?php foreach (($detail['ideal_positif'] ?? []) as $j => $val): ?>
                 <div class="flex justify-between items-center py-1.5 border-b" style="border-color:var(--card-border)">
-                    <span style="font-size:12px;color:#8b949e"><?= htmlspecialchars($kriteria[$j]['nama_kriteria'] ?? '-') ?></span>
+                    <span style="font-size:12px;color:#c0c8d2"><?= htmlspecialchars($kriteria[$j]['nama_kriteria'] ?? '-') ?></span>
                     <span style="font-size:12px;font-family:monospace;font-weight:700;color:var(--success)"><?= number_format((float)$val, 4) ?></span>
                 </div>
                 <?php endforeach; ?>
             </div>
         </div>
         <div class="glass-panel overflow-hidden">
-            <div class="px-5 py-3 border-b flex items-center gap-3" style="border-color:var(--card-border);background:rgba(239,68,68,0.05)">
+            <div class="px-5 py-3 border-b flex items-center gap-3" style="border-color:var(--card-border);background:rgba(239,68,68,0.1)">
                 <div class="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0" style="background:var(--danger);color:white;box-shadow:0 0 8px var(--danger-glow)">4</div>
                 <h3 class="text-white font-semibold text-sm"><i class="bi bi-dash-circle text-danger mr-1"></i> Solusi Ideal Negatif (A⁻)</h3>
             </div>
             <div class="px-5 py-3 space-y-1">
                 <?php foreach (($detail['ideal_negatif'] ?? []) as $j => $val): ?>
                 <div class="flex justify-between items-center py-1.5 border-b" style="border-color:var(--card-border)">
-                    <span style="font-size:12px;color:#8b949e"><?= htmlspecialchars($kriteria[$j]['nama_kriteria'] ?? '-') ?></span>
+                    <span style="font-size:12px;color:#c0c8d2"><?= htmlspecialchars($kriteria[$j]['nama_kriteria'] ?? '-') ?></span>
                     <span style="font-size:12px;font-family:monospace;font-weight:700;color:var(--danger)"><?= number_format((float)$val, 4) ?></span>
                 </div>
                 <?php endforeach; ?>
@@ -168,16 +168,16 @@ if ($tipe === 'punishment') {
             <div class="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0" style="background:#f97316;color:white;box-shadow:0 0 8px rgba(249,115,22,.4)">5</div>
             <div>
                 <h2 class="text-white font-semibold text-sm">Jarak ke Solusi Ideal (D⁺ dan D⁻)</h2>
-                <p style="font-size:11px;color:#8b949e">D⁺ = √(∑ (y<sub>ij</sub> - A⁺<sub>j</sub>)²) &nbsp;|&nbsp; D⁻ = √(∑ (y<sub>ij</sub> - A⁻<sub>j</sub>)²)</p>
+                <p style="font-size:11px;color:#c0c8d2">D⁺ = √(∑ (y<sub>ij</sub> - A⁺<sub>j</sub>)²) &nbsp;|&nbsp; D⁻ = √(∑ (y<sub>ij</sub> - A⁻<sub>j</sub>)²)</p>
             </div>
         </div>
         <div class="overflow-auto" style="max-height:320px">
             <table style="width:100%;border-collapse:separate;border-spacing:0;font-size:12px">
                 <thead style="position:sticky;top:0;z-index:2">
                     <tr>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:left;border-bottom:1px solid var(--card-border)">Alternatif</th>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border)">D⁺ ke Positif</th>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border)">D⁻ ke Negatif</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:left;border-bottom:1px solid var(--card-border)">Alternatif</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border)">D⁺ ke Positif</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border)">D⁻ ke Negatif</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -199,15 +199,15 @@ if ($tipe === 'punishment') {
             <div class="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0" style="background:var(--primary);color:white;box-shadow:0 0 8px var(--primary-glow)">6</div>
             <div>
                 <h2 class="text-white font-semibold text-sm">Nilai Preferensi (V)</h2>
-                <p style="font-size:11px;color:#8b949e">Rumus: V<sub>i</sub> = D⁻ / (D⁺ + D⁻)</p>
+                <p style="font-size:11px;color:#c0c8d2">Rumus: V<sub>i</sub> = D⁻ / (D⁺ + D⁻)</p>
             </div>
         </div>
         <div class="overflow-auto" style="max-height:320px">
             <table style="width:100%;border-collapse:separate;border-spacing:0;font-size:12px">
                 <thead style="position:sticky;top:0;z-index:2">
                     <tr>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:left;border-bottom:1px solid var(--card-border)">Alternatif</th>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border)">Nilai Preferensi (V)</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:left;border-bottom:1px solid var(--card-border)">Alternatif</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border)">Nilai Preferensi (V)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -232,19 +232,19 @@ if ($tipe === 'punishment') {
             <div class="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0" style="background:white;color:black;box-shadow:0 0 8px rgba(255,255,255,.3)">7</div>
             <div>
                 <h2 class="text-white font-semibold text-sm">Ranking &amp; Keputusan Akhir</h2>
-                <p style="font-size:11px;color:#8b949e">Berdasarkan pengurutan nilai preferensi (V) tertinggi ke terendah.</p>
+                <p style="font-size:11px;color:#c0c8d2">Berdasarkan pengurutan nilai preferensi (V) tertinggi ke terendah.</p>
             </div>
         </div>
         <div class="overflow-auto" style="max-height:400px">
             <table style="width:100%;border-collapse:separate;border-spacing:0;font-size:12px">
                 <thead style="position:sticky;top:0;z-index:2">
                     <tr>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:center;border-bottom:1px solid var(--card-border)">Rank</th>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;border-bottom:1px solid var(--card-border)">NIK</th>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;border-bottom:1px solid var(--card-border)">Nama Karyawan</th>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;border-bottom:1px solid var(--card-border)">Divisi</th>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border)">Nilai V</th>
-                        <th style="background:rgba(13,37,36,.97);color:#8b949e;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:center;border-bottom:1px solid var(--card-border)">Keputusan</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:center;border-bottom:1px solid var(--card-border)">Rank</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;border-bottom:1px solid var(--card-border)">NIK</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;border-bottom:1px solid var(--card-border)">Nama Karyawan</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;border-bottom:1px solid var(--card-border)">Divisi</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:right;border-bottom:1px solid var(--card-border)">Nilai V</th>
+                        <th style="background:rgba(13,37,36,.97);color:#c0c8d2;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:8px 14px;text-align:center;border-bottom:1px solid var(--card-border)">Keputusan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -261,18 +261,18 @@ if ($tipe === 'punishment') {
                     ?>
                     <tr style="<?= $rowBg ?>">
                         <td style="padding:7px 14px;text-align:center;font-weight:700;border-bottom:1px solid rgba(255,255,255,.03)">
-                            <?php if ($rank==1): ?>🥇<?php elseif ($rank==2): ?>🥈<?php elseif ($rank==3): ?>🥉<?php else: ?><span style="color:#8b949e"><?= $rank ?></span><?php endif; ?>
+                            <?php if ($rank==1): ?>🥇<?php elseif ($rank==2): ?>🥈<?php elseif ($rank==3): ?>🥉<?php else: ?><span style="color:#c0c8d2"><?= $rank ?></span><?php endif; ?>
                         </td>
-                        <td style="padding:7px 14px;font-family:monospace;color:#8b949e;border-bottom:1px solid rgba(255,255,255,.03)"><?= htmlspecialchars($kary['nik'] ?? '-') ?></td>
+                        <td style="padding:7px 14px;font-family:monospace;color:#c0c8d2;border-bottom:1px solid rgba(255,255,255,.03)"><?= htmlspecialchars($kary['nik'] ?? '-') ?></td>
                         <td style="padding:7px 14px;color:#fff;font-weight:500;border-bottom:1px solid rgba(255,255,255,.03)"><?= htmlspecialchars($kary['nama'] ?? '-') ?></td>
-                        <td style="padding:7px 14px;color:#8b949e;border-bottom:1px solid rgba(255,255,255,.03)"><?= htmlspecialchars($kary['divisi'] ?? '-') ?></td>
+                        <td style="padding:7px 14px;color:#c0c8d2;border-bottom:1px solid rgba(255,255,255,.03)"><?= htmlspecialchars($kary['divisi'] ?? '-') ?></td>
                         <td style="padding:7px 14px;font-family:monospace;font-weight:700;text-align:right;color:var(--primary);border-bottom:1px solid rgba(255,255,255,.03)"><?= number_format((float)$r['nilai'], 4) ?></td>
                         <td style="padding:7px 14px;text-align:center;border-bottom:1px solid rgba(255,255,255,.03)">
                             <?php if ($isReward): ?>
                             <span class="badge-glass badge-success" style="font-size:10px;padding:2px 8px">REWARD</span>
                             <?php elseif ($isPunishment): ?>
                             <span class="badge-glass badge-danger" style="font-size:10px;padding:2px 8px">PUNISHMENT</span>
-                            <?php else: ?><span style="color:#8b949e">—</span><?php endif; ?>
+                            <?php else: ?><span style="color:#c0c8d2">—</span><?php endif; ?>
                         </td>
                     </tr>
                     <?php $rank++; endforeach; ?>
@@ -283,7 +283,7 @@ if ($tipe === 'punishment') {
     
     <!-- Catatan -->
     <div class="glass-panel border-l-4 mb-6" style="border-left-color:var(--primary);padding:12px 16px">
-        <p style="font-size:12px;color:#8b949e;line-height:1.6">
+        <p style="font-size:12px;color:#c0c8d2;line-height:1.6">
             <i class="bi bi-info-circle-fill text-primary mr-2"></i>
             <strong style="color:#fff">Keterangan:</strong>
             <?php if ($tipe === 'reward'): ?>

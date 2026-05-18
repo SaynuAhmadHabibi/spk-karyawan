@@ -84,26 +84,14 @@ try {
         PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 
-    // ── Pastikan user admin selalu ada ──────────────────────────────
-    // Hapus semua user lama, buat 1 user admin saja
+    // ── Pastikan user admin ada (hanya saat DB kosong pada inisialisasi) ──
+    // Jika tabel users masih kosong, buat satu akun admin default.
+    // Jangan otomatis membuat/restore akun admin pada setiap request,
+    // karena itu akan mengembalikan user yang sengaja dihapus.
     $userCount = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
     if ($userCount == 0) {
         $pdo->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)")
             ->execute(['admin', password_hash('admin', PASSWORD_DEFAULT), 'admin']);
-    } else {
-        // Pastikan user admin ada dan password-nya benar
-        $stmtCheck = $pdo->prepare("SELECT id, password FROM users WHERE username = 'admin'");
-        $stmtCheck->execute();
-        $adminUser = $stmtCheck->fetch();
-        if (!$adminUser) {
-            // Admin belum ada → buat
-            $pdo->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)")
-                ->execute(['admin', password_hash('admin', PASSWORD_DEFAULT), 'admin']);
-        } elseif (!password_verify('admin', $adminUser['password'])) {
-            // Password admin tidak valid → perbaiki
-            $pdo->prepare("UPDATE users SET password = ? WHERE id = ?")
-                ->execute([password_hash('admin', PASSWORD_DEFAULT), $adminUser['id']]);
-        }
     }
 
 } catch (PDOException $e) {

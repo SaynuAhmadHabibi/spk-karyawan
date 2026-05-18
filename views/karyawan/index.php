@@ -4,7 +4,7 @@ require_once __DIR__ . '/../layouts/header.php';
 ?>
 <div class="glass-panel overflow-hidden">
     <div class="px-6 py-5 border-b flex justify-between items-center flex-wrap gap-4" style="border-color: var(--card-border)">
-        <h2 class="font-semibold text-white"><i class="bi bi-people-fill text-primary mr-2"></i> Daftar Karyawan</h2>
+        <h2 class="font-semibold text-gray-800"><i class="bi bi-people-fill text-primary mr-2"></i> Daftar Karyawan</h2>
         <div class="flex items-center gap-3">
             <div class="relative">
                 <i class="bi bi-search absolute left-3 top-1/2 transform -translate-y-1/2 text-muted"></i>
@@ -52,7 +52,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 <tr>
                     <td class="text-muted"><?= $i+1 ?></td>
                     <td class="font-mono text-muted"><?= htmlspecialchars($k['nik']) ?></td>
-                    <td class="font-medium text-white"><?= htmlspecialchars($k['nama']) ?></td>
+                    <td class="font-medium text-gray-800"><?= htmlspecialchars($k['nama']) ?></td>
                     <td><?= htmlspecialchars($k['jabatan'] ?? '-') ?></td>
                     <td><?= htmlspecialchars($k['divisi'] ?? '-') ?></td>
                     <td class="text-muted"><?= $k['tanggal_masuk'] ? date('d M Y', strtotime($k['tanggal_masuk'])) : '-' ?></td>
@@ -66,8 +66,8 @@ require_once __DIR__ . '/../layouts/header.php';
                     <td>
                         <div class="flex gap-2">
                             <?php if ($_SESSION['user']['role'] !== 'direktur'): ?>
-                            <a href="index.php?act=karyawan&sub=edit&id=<?= $k['id'] ?>" class="text-primary hover:text-white transition p-1"><i class="bi bi-pencil-square"></i></a>
-                            <button onclick="confirmDelete('index.php?act=karyawan&sub=delete&id=<?= $k['id'] ?>')" class="text-danger hover:text-white transition p-1"><i class="bi bi-trash-fill"></i></button>
+                            <a href="index.php?act=karyawan&sub=edit&id=<?= $k['id'] ?>" class="text-primary hover:text-gray-800 transition p-1"><i class="bi bi-pencil-square"></i></a>
+                            <button onclick="confirmDelete('index.php?act=karyawan&sub=delete&id=<?= $k['id'] ?>')" class="text-danger hover:text-gray-800 transition p-1"><i class="bi bi-trash-fill"></i></button>
                             <?php else: ?>
                             <span class="text-muted text-xs">Tidak ada aksi</span>
                             <?php endif; ?>

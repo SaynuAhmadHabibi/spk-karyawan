@@ -30,8 +30,8 @@ $hasData = ($debugInfo['data_penilaian_ditemukan'] ?? 0) > 0;
     <div class="flex items-start gap-3">
         <i class="bi bi-exclamation-triangle-fill text-warning text-xl mt-0.5"></i>
         <div>
-            <h3 class="text-white font-semibold mb-1">Data Penilaian Tidak Ditemukan</h3>
-            <p class="text-sm text-muted mb-3">Tidak ada data penilaian untuk periode <strong class="text-white"><?= date('F Y', strtotime($periode)) ?></strong>. Semua skor akan bernilai 0.</p>
+            <h3 class="text-gray-800 font-semibold mb-1">Data Penilaian Tidak Ditemukan</h3>
+            <p class="text-sm text-muted mb-3">Tidak ada data penilaian untuk periode <strong class="text-gray-800"><?= date('F Y', strtotime($periode)) ?></strong>. Semua skor akan bernilai 0.</p>
             <div class="flex gap-2">
                 <a href="index.php?act=hitung_punishment_form" class="btn-glass px-4 py-2 text-sm hover:text-warning">
                     <i class="bi bi-arrow-left mr-1"></i> Pilih Periode Lain
@@ -47,7 +47,7 @@ $hasData = ($debugInfo['data_penilaian_ditemukan'] ?? 0) > 0;
 
 <div class="glass-panel overflow-hidden">
     <div class="px-6 py-5 flex justify-between items-center flex-wrap gap-4 border-b" style="border-color: var(--card-border);">
-        <h2 class="text-xl font-bold text-white"><i class="bi bi-exclamation-triangle-fill text-danger mr-2"></i> Hasil Punishment <span class="text-sm font-normal text-muted ml-2">(Periode <?= date('F Y', strtotime($periode)) ?>)</span></h2>
+        <h2 class="text-xl font-bold text-gray-800"><i class="bi bi-exclamation-triangle-fill text-danger mr-2"></i> Hasil Punishment <span class="text-sm font-normal text-muted ml-2">(Periode <?= date('F Y', strtotime($periode)) ?>)</span></h2>
         <div class="flex gap-2">
             <a href="index.php?act=export_excel&tipe=punishment" class="btn-glass px-4 py-2 text-sm flex items-center gap-2 hover:text-success"><i class="bi bi-file-earmark-excel"></i> Excel</a>
             <a href="index.php?act=export_pdf&tipe=punishment" class="btn-glass px-4 py-2 text-sm flex items-center gap-2 hover:text-danger"><i class="bi bi-file-earmark-pdf"></i> PDF</a>
@@ -96,7 +96,7 @@ $hasData = ($debugInfo['data_penilaian_ditemukan'] ?? 0) > 0;
                 <tr style="<?= $rowStyle ?>">
                     <td class="text-center font-bold <?= $isPunishment ? 'text-danger text-lg' : 'text-muted' ?>"><?= $no ?></td>
                     <td class="font-mono text-muted"><?= htmlspecialchars($k['nik'] ?? '-') ?></td>
-                    <td class="font-medium <?= $isPunishment ? 'text-danger' : 'text-white' ?>"><?= htmlspecialchars($k['nama'] ?? '-') ?></td>
+                    <td class="font-medium <?= $isPunishment ? 'text-danger' : 'text-gray-800' ?>"><?= htmlspecialchars($k['nama'] ?? '-') ?></td>
                     <td><?= htmlspecialchars($k['divisi'] ?? '-') ?></td>
                     <td class="font-mono <?= $isPunishment ? 'text-danger font-bold' : 'text-primary' ?>"><?= number_format((float)$r['nilai'], 4) ?></td>
                     <td class="text-center">
@@ -118,7 +118,7 @@ $hasData = ($debugInfo['data_penilaian_ditemukan'] ?? 0) > 0;
             <i class="bi bi-info-circle text-danger mr-1"></i> Dasar keputusan: 3 karyawan dengan skor preferensi terendah direkomendasikan mendapat punishment.
         </div>
         <div class="flex gap-2">
-            <a href="index.php?act=hitung_punishment_form" class="btn-glass px-4 py-2 text-sm hover:text-white">Hitung Ulang</a>
+            <a href="index.php?act=hitung_punishment_form" class="btn-glass px-4 py-2 text-sm hover:text-gray-800">Hitung Ulang</a>
             <a href="index.php?act=hasil_reward" class="btn-glass px-4 py-2 text-sm hover:text-primary" style="color: var(--primary) !important;">Lihat Hasil Reward</a>
         </div>
     </div>

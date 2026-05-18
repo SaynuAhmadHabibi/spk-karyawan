@@ -5,7 +5,7 @@ $role = $_SESSION['user']['role'] ?? '';
 ?>
 <div class="glass-panel overflow-hidden">
     <div class="px-6 py-5 border-b" style="border-color: var(--card-border);">
-        <h2 class="text-xl font-bold text-white"><i class="bi bi-clock-history text-primary mr-2"></i> Riwayat Periode Penilaian</h2>
+        <h2 class="text-xl font-bold text-gray-800"><i class="bi bi-clock-history text-primary mr-2"></i> Riwayat Periode Penilaian</h2>
         <p class="text-muted text-xs mt-1">Daftar periode yang telah diproses dan dihitung.</p>
     </div>
     
@@ -31,8 +31,8 @@ $role = $_SESSION['user']['role'] ?? '';
                 </tr>
                 <?php else: ?>
                 <?php foreach($periodeData as $pd): ?>
-                <tr class="hover:bg-white/5 transition">
-                    <td class="font-bold text-white"><?= $pd['periode_name'] ?></td>
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="font-bold text-gray-800"><?= $pd['periode_name'] ?></td>
                     <td>
                         <?php if (!empty($pd['reward'])): ?>
                         <div class="flex flex-col gap-1">

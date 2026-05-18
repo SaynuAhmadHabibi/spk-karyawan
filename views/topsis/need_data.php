@@ -7,7 +7,7 @@ $role = $_SESSION['user']['role'] ?? '';
     <div class="w-20 h-20 bg-danger/10 text-danger rounded-full flex items-center justify-center text-4xl mx-auto mb-6" style="box-shadow: 0 0 20px var(--danger-glow)">
         <i class="bi bi-database-exclamation"></i>
     </div>
-    <h2 class="text-2xl font-bold mb-4 text-white">Data Perhitungan Belum Lengkap</h2>
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Data Perhitungan Belum Lengkap</h2>
     <p class="text-muted mb-8">Sistem memerlukan minimal satu karyawan aktif dan satu kriteria dengan bobot yang valid untuk menjalankan algoritma TOPSIS.</p>
     
     <div class="space-y-4 text-left">
@@ -33,7 +33,7 @@ $role = $_SESSION['user']['role'] ?? '';
     </div>
     
     <div class="mt-10 pt-6 border-t" style="border-color: var(--card-border)">
-        <a href="index.php?act=dashboard" class="btn-glass px-6 py-2.5 text-muted hover:text-white"><i class="bi bi-arrow-left mr-2"></i> Kembali ke Dashboard</a>
+        <a href="index.php?act=dashboard" class="btn-glass px-6 py-2.5 text-muted hover:text-gray-800"><i class="bi bi-arrow-left mr-2"></i> Kembali ke Dashboard</a>
     </div>
 </div>
 <?php include __DIR__ . '/../layouts/footer.php'; ?>

@@ -4,7 +4,7 @@ include __DIR__ . '/../layouts/header.php';
 $k = $kriteria;
 ?>
 <div class="glass-panel p-8 max-w-lg mx-auto">
-    <h2 class="text-2xl font-bold mb-6 text-white"><i class="bi bi-pencil-square text-primary mr-2"></i> Edit Data Kriteria</h2>
+    <h2 class="text-2xl font-bold mb-6 text-gray-800"><i class="bi bi-pencil-square text-primary mr-2"></i> Edit Data Kriteria</h2>
     <?php if(isset($error)): ?>
     <div class="badge-glass badge-danger w-full mb-6 p-3 flex items-center gap-2">
         <i class="bi bi-exclamation-octagon"></i> <?= htmlspecialchars($error) ?>
@@ -28,7 +28,7 @@ $k = $kriteria;
         </div>
         <div class="flex gap-3 pt-4">
             <button type="submit" class="btn-primary-glow px-6 py-2.5">Update Kriteria</button>
-            <a href="index.php?act=kriteria" class="btn-glass px-6 py-2.5 text-muted hover:text-white">Batal</a>
+            <a href="index.php?act=kriteria" class="btn-glass px-6 py-2.5 text-muted hover:text-gray-800">Batal</a>
         </div>
     </form>
 </div>

@@ -1,8 +1,8 @@
 <?php $page_title = 'Input Penilaian Karyawan'; include __DIR__ . '/../layouts/header.php'; ?>
 <div class="glass-panel overflow-hidden">
     <div class="px-6 py-5 border-b" style="border-color: var(--card-border);">
-        <h2 class="text-xl font-bold text-white"><i class="bi bi-pencil-square text-primary mr-2"></i> Input Nilai Karyawan</h2>
-        <p class="text-muted text-xs mt-1">Periode Penilaian: <span class="text-white font-semibold"><?= htmlspecialchars(date('F Y', strtotime($periode))) ?></span></p>
+        <h2 class="text-xl font-bold text-gray-800"><i class="bi bi-pencil-square text-primary mr-2"></i> Input Nilai Karyawan</h2>
+        <p class="text-muted text-xs mt-1">Periode Penilaian: <span class="text-gray-800 font-semibold"><?= htmlspecialchars(date('F Y', strtotime($periode))) ?></span></p>
     </div>
 
     <div class="p-6">
@@ -19,7 +19,7 @@
                         id="inputPeriodeNav"
                         class="glass-input w-full py-2.5 px-4" required>
                 </div>
-                <button type="submit" class="btn-glass px-5 py-2.5 flex items-center gap-2 hover:text-white">
+                <button type="submit" class="btn-glass px-5 py-2.5 flex items-center gap-2 hover:text-gray-800">
                     <i class="bi bi-arrow-right-circle text-primary"></i> Tampilkan Data
                 </button>
                 <div class="badge-glass" style="background: rgba(255,255,255,0.02)">
@@ -40,7 +40,7 @@
                             <th>Karyawan</th>
                             <?php foreach($kriteria as $k): ?>
                             <th class="text-center">
-                                <div class="text-white"><?= htmlspecialchars($k['nama_kriteria']) ?></div>
+                                <div class="text-gray-800"><?= htmlspecialchars($k['nama_kriteria']) ?></div>
                                 <div class="text-[10px] text-muted normal-case font-normal mt-1">Bobot: <?= number_format($k['bobot'], 2) ?></div>
                             </th>
                             <?php endforeach; ?>
@@ -51,8 +51,8 @@
                         <tr><td colspan="<?= count($kriteria) + 1 ?>" class="text-center py-10 text-muted">Belum ada data karyawan aktif.</td></tr>
                         <?php else: ?>
                         <?php foreach($karyawan as $kar): ?>
-                        <tr class="hover:bg-white/5 transition">
-                            <td class="font-medium text-white border-r" style="border-color: var(--card-border)"><?= htmlspecialchars($kar['nama']) ?></td>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="font-medium text-gray-800 border-r" style="border-color: var(--card-border)"><?= htmlspecialchars($kar['nama']) ?></td>
                             <?php foreach($kriteria as $krit): ?>
                             <td class="text-center">
                                 <input type="number" step="0.01" min="0" max="100"
@@ -77,12 +77,12 @@
                     </button>
                     <button type="button"
                         onclick="document.querySelectorAll('#formPenilaian input[type=\'number\']').forEach(i => i.value='')"
-                        class="btn-glass px-6 py-2.5 text-muted hover:text-white">
+                        class="btn-glass px-6 py-2.5 text-muted hover:text-gray-800">
                         Kosongkan Input
                     </button>
                 </div>
                 <a href="index.php?act=penilaian_input&periode=<?= htmlspecialchars(substr($periode, 0, 7)) ?>&clear=1"
-                    class="text-danger hover:text-white transition flex items-center gap-1 text-sm font-semibold"
+                    class="text-danger hover:text-gray-800 transition flex items-center gap-1 text-sm font-semibold"
                     onclick="return confirm('Kosongkan semua nilai di database untuk periode <?= htmlspecialchars(date('F Y', strtotime($periode))) ?>?\nTindakan ini tidak dapat dibatalkan.')">
                     <i class="bi bi-trash"></i> Hapus Penilaian Bulan Ini
                 </a>

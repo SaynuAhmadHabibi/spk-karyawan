@@ -29,7 +29,7 @@ $username = $_SESSION['user']['username'] ?? 'User';
                 <span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
                 <span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
             </div>
-            <a href="index.php?act=hitung_reward" class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition backdrop-blur-md">
+            <a href="index.php?act=hitung_reward_form" class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition backdrop-blur-md">
                 <i class="bi bi-arrow-up-right text-white"></i>
             </a>
         </div>
@@ -87,18 +87,23 @@ $username = $_SESSION['user']['username'] ?? 'User';
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
     <!-- Card Reward -->
     <?php if ($bestKaryawan): ?>
-    <div onclick="window.location.href='index.php?act=hasil_reward'" class="glass-card p-6 flex items-center justify-between group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_30px_rgba(34,197,94,0.2)] border-l-4 border-success relative overflow-hidden cursor-pointer">
+    <div onclick="window.location.href='index.php?act=hitung_reward&periode=<?= substr($periodeTerakhir ?? date('Y-m'), 0, 7) ?>'" class="glass-card p-6 flex items-center justify-between group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_30px_rgba(34,197,94,0.2)] border-l-4 border-success relative overflow-hidden cursor-pointer">
         <div class="absolute inset-0 bg-gradient-to-r from-success/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div class="relative z-10 flex-1 min-w-0">
             <div class="flex items-center gap-2 mb-2">
                 <div class="w-8 h-8 rounded-lg bg-success/20 flex items-center justify-center text-success shrink-0">
                     <i class="bi bi-trophy-fill text-sm"></i>
                 </div>
-                <h3 class="text-xs font-bold text-success uppercase tracking-wider">Karyawan Terbaik</h3>
+                <h3 class="text-xs font-bold text-success uppercase tracking-wider flex items-center gap-2">
+                    Karyawan Terbaik
+                    <?php if (isset($periodeTerakhir) && $periodeTerakhir): ?>
+                    <span class="text-[10px] font-normal text-success/70 bg-success/10 px-2 py-0.5 rounded-full normal-case tracking-normal border border-success/10"><?= date('M Y', strtotime($periodeTerakhir)) ?></span>
+                    <?php endif; ?>
+                </h3>
             </div>
             <p class="text-2xl font-bold text-white mb-2 truncate"><?= htmlspecialchars($bestKaryawan['nama']) ?></p>
             <div class="flex flex-wrap items-center gap-2 text-xs font-medium">
-                <span class="font-mono bg-black/20 px-2 py-1 rounded text-slate-300 border border-white/5">Skor: <?= number_format($bestKaryawan['nilai'], 4) ?></span>
+                <span class="font-mono bg-black/20 px-2 py-1 rounded text-slate-300 border border-gray-200">Skor: <?= number_format($bestKaryawan['nilai'], 4) ?></span>
                 <span class="text-success bg-success/10 px-2 py-1 rounded border border-success/20"><i class="bi bi-check-circle-fill mr-1"></i>REWARD</span>
             </div>
         </div>
@@ -110,18 +115,23 @@ $username = $_SESSION['user']['username'] ?? 'User';
 
     <!-- Card Punishment -->
     <?php if ($worstKaryawan): ?>
-    <div onclick="window.location.href='index.php?act=hasil_punishment'" class="glass-card p-6 flex items-center justify-between group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_30px_rgba(239,68,68,0.2)] border-l-4 border-danger relative overflow-hidden cursor-pointer">
+    <div onclick="window.location.href='index.php?act=hitung_punishment&periode=<?= substr($periodeTerakhir ?? date('Y-m'), 0, 7) ?>'" class="glass-card p-6 flex items-center justify-between group transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_30px_rgba(239,68,68,0.2)] border-l-4 border-danger relative overflow-hidden cursor-pointer">
         <div class="absolute inset-0 bg-gradient-to-r from-danger/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         <div class="relative z-10 flex-1 min-w-0">
             <div class="flex items-center gap-2 mb-2">
                 <div class="w-8 h-8 rounded-lg bg-danger/20 flex items-center justify-center text-danger shrink-0">
                     <i class="bi bi-exclamation-triangle-fill text-sm"></i>
                 </div>
-                <h3 class="text-xs font-bold text-danger uppercase tracking-wider">Karyawan Terendah</h3>
+                <h3 class="text-xs font-bold text-danger uppercase tracking-wider flex items-center gap-2">
+                    Karyawan Terendah
+                    <?php if (isset($periodeTerakhir) && $periodeTerakhir): ?>
+                    <span class="text-[10px] font-normal text-danger/70 bg-danger/10 px-2 py-0.5 rounded-full normal-case tracking-normal border border-danger/10"><?= date('M Y', strtotime($periodeTerakhir)) ?></span>
+                    <?php endif; ?>
+                </h3>
             </div>
             <p class="text-2xl font-bold text-white mb-2 truncate"><?= htmlspecialchars($worstKaryawan['nama']) ?></p>
             <div class="flex flex-wrap items-center gap-2 text-xs font-medium">
-                <span class="font-mono bg-black/20 px-2 py-1 rounded text-slate-300 border border-white/5">Skor: <?= number_format($worstKaryawan['nilai'], 4) ?></span>
+                <span class="font-mono bg-black/20 px-2 py-1 rounded text-slate-300 border border-gray-200">Skor: <?= number_format($worstKaryawan['nilai'], 4) ?></span>
                 <span class="text-danger bg-danger/10 px-2 py-1 rounded border border-danger/20"><i class="bi bi-x-circle-fill mr-1"></i>PUNISHMENT</span>
             </div>
         </div>
@@ -161,10 +171,10 @@ $username = $_SESSION['user']['username'] ?? 'User';
                     <i class="bi bi-three-dots"></i>
                 </button>
                 <div id="rankingDropdown" class="hidden absolute right-0 top-8 w-52 glass-card border rounded-xl shadow-xl z-50 py-1 overflow-hidden" style="border-color:var(--card-border);min-width:180px">
-                    <a href="index.php?act=hasil_reward" class="flex items-center gap-3 px-4 py-2.5 text-sm text-muted hover:text-white hover:bg-white/5 transition">
+                    <a href="index.php?act=hitung_reward&periode=<?= substr($periodeTerakhir ?? date('Y-m'), 0, 7) ?>" class="flex items-center gap-3 px-4 py-2.5 text-sm text-muted hover:text-white hover:bg-white/5 transition">
                         <i class="bi bi-trophy-fill text-yellow-400"></i> Lihat Hasil Reward
                     </a>
-                    <a href="index.php?act=hasil_punishment" class="flex items-center gap-3 px-4 py-2.5 text-sm text-muted hover:text-white hover:bg-white/5 transition">
+                    <a href="index.php?act=hitung_punishment&periode=<?= substr($periodeTerakhir ?? date('Y-m'), 0, 7) ?>" class="flex items-center gap-3 px-4 py-2.5 text-sm text-muted hover:text-white hover:bg-white/5 transition">
                         <i class="bi bi-exclamation-triangle-fill text-danger"></i> Lihat Hasil Punishment
                     </a>
                     <div class="border-t my-1" style="border-color:var(--card-border)"></div>
@@ -180,7 +190,7 @@ $username = $_SESSION['user']['username'] ?? 'User';
         <div class="flex-1 overflow-y-auto px-2 py-2">
             <?php if (!empty($top5)): ?>
                 <?php $icons = ['bi-trophy-fill text-yellow-500', 'bi-award-fill text-slate-300', 'bi-award-fill text-amber-700', 'bi-person-fill text-muted', 'bi-person-fill text-muted']; foreach ($top5 as $i => $r): ?>
-                <a href="index.php?act=hasil_reward" class="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition mb-1 cursor-pointer no-underline group">
+                <a href="index.php?act=hitung_reward&periode=<?= substr($periodeTerakhir ?? date('Y-m'), 0, 7) ?>" class="flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition mb-1 cursor-pointer no-underline group">
                     <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition">
                         <i class="bi <?= $icons[$i] ?> text-lg"></i>
                     </div>
@@ -198,13 +208,13 @@ $username = $_SESSION['user']['username'] ?? 'User';
                 <div class="p-8 text-center text-muted">
                     <i class="bi bi-bar-chart text-3xl opacity-30 block mb-2"></i>
                     <p class="text-sm">Hitung TOPSIS terlebih dahulu.</p>
-                    <a href="index.php?act=hitung_reward_form" class="inline-block mt-3 text-xs text-primary hover:underline">Hitung Sekarang →</a>
+                    <a href="index.php?act=hitung_reward_form" class="inline-block mt-3 text-xs text-primary hover:underline">Hitung Sekarang â†’</a>
                 </div>
             <?php endif; ?>
         </div>
         <?php if (!empty($top5)): ?>
         <div class="p-4 mt-auto border-t" style="border-color: var(--card-border)">
-            <a href="index.php?act=hasil_reward" class="block w-full py-2 text-center text-xs font-bold text-muted hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition">
+            <a href="index.php?act=hitung_reward&periode=<?= substr($periodeTerakhir ?? date('Y-m'), 0, 7) ?>" class="block w-full py-2 text-center text-xs font-bold text-muted hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition">
                 <i class="bi bi-arrow-right mr-1"></i> Lihat Semua Hasil
             </a>
         </div>
@@ -214,7 +224,7 @@ $username = $_SESSION['user']['username'] ?? 'User';
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 <script>
-Chart.defaults.color = '#8b949e';
+Chart.defaults.color = '#a8b2bc';
 Chart.defaults.font.family = "'Inter', sans-serif";
 
 <?php if (!empty($chartData)): ?>
@@ -287,3 +297,4 @@ document.addEventListener('click', function(e) {
 </script>
 
 <?php require_once __DIR__ . '/layouts/footer.php'; ?>
+

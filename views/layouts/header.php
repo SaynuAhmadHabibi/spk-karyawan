@@ -13,6 +13,18 @@
                         dark: { 900: '#081a19', 800: '#0d2524', 700: '#112c2b', 600: '#163634' },
                         accent: { DEFAULT: '#ea580c', hover: '#c2410c' },
                         primary: { DEFAULT: '#22574f', hover: '#1b453e' },
+                        gray: {
+                            50:  'rgba(255,255,255,0.04)',
+                            100: 'rgba(255,255,255,0.06)',
+                            200: 'rgba(255,255,255,0.1)',
+                            300: '#64748b',
+                            400: '#94a3b8',
+                            500: '#a8b2bc',
+                            600: '#b8c0cc',
+                            700: '#cbd5e1',
+                            800: '#e2e8f0',
+                            900: '#f1f5f9',
+                        },
                     }
                 }
             }
@@ -22,7 +34,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/nav.css">
 </head>
-<body class="app-bg font-sans antialiased text-white min-h-screen">
+<body class="app-bg font-sans antialiased text-gray-800 min-h-screen">
 <?php
 $currentAct = $_GET['act'] ?? 'dashboard';
 $user  = $_SESSION['user'] ?? null;
@@ -161,9 +173,34 @@ function isActive(array $item, string $act): bool {
 <!-- ── MAIN CONTENT AREA ──────────────────────────────────── -->
 <div class="navbar-layout">
     <!-- Breadcrumb -->
+    <?php
+    $noBreadcrumbPages = [
+        'Dashboard',
+        'Data Karyawan',
+        'Profil Saya',
+        'Manajemen Karyawan',
+        'Input Penilaian Karyawan',
+        'Manajemen Kriteria & Bobot',
+        'Hitung Reward - Pilih Periode Akhir',
+        'Hitung Punishment - Pilih Periode',
+        'Hasil Reward',
+        'Hasil Punishment',
+        'Manajemen Pengguna',
+    ];
+
+    $shouldShowBreadcrumb = true;
+    if (in_array($page_title ?? '', $noBreadcrumbPages, true)) {
+        $shouldShowBreadcrumb = false;
+    }
+    if (($currentAct ?? '') === 'dashboard') {
+        $shouldShowBreadcrumb = false;
+    }
+    ?>
+    <?php if ($shouldShowBreadcrumb): ?>
     <div class="navbar-breadcrumb-bar">
         <p class="topbar-breadcrumb"><i class="bi bi-house-fill mr-1"></i>SPK TOPSIS / <?= htmlspecialchars($page_title ?? 'Dashboard') ?></p>
     </div>
+    <?php endif; ?>
 
     <!-- PAGE CONTENT -->
     <main class="page-content-navbar">

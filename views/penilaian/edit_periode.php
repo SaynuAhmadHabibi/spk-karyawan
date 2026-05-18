@@ -4,8 +4,8 @@ include __DIR__ . '/../layouts/header.php';
 ?>
 <div class="glass-panel overflow-hidden">
     <div class="px-6 py-5 border-b" style="border-color: var(--card-border);">
-        <h2 class="text-xl font-bold text-white"><i class="bi bi-pencil-square text-primary mr-2"></i> Edit Penilaian Periode</h2>
-        <p class="text-muted text-xs mt-1">Periode: <span class="text-white font-semibold"><?= date('F Y', strtotime($periode)) ?></span></p>
+        <h2 class="text-xl font-bold text-gray-800"><i class="bi bi-pencil-square text-primary mr-2"></i> Edit Penilaian Periode</h2>
+        <p class="text-muted text-xs mt-1">Periode: <span class="text-gray-800 font-semibold"><?= date('F Y', strtotime($periode)) ?></span></p>
     </div>
     
     <div class="p-6">
@@ -22,8 +22,8 @@ include __DIR__ . '/../layouts/header.php';
                     </thead>
                     <tbody>
                         <?php foreach($karyawan as $kar): ?>
-                        <tr class="hover:bg-white/5 transition">
-                            <td class="font-medium text-white border-r" style="border-color: var(--card-border)"><?= htmlspecialchars($kar['nama']) ?></td>
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="font-medium text-gray-800 border-r" style="border-color: var(--card-border)"><?= htmlspecialchars($kar['nama']) ?></td>
                             <?php foreach($kriteria as $krit): ?>
                             <td class="text-center">
                                 <input type="number" step="0.01" min="0" max="100" 
@@ -43,7 +43,7 @@ include __DIR__ . '/../layouts/header.php';
                 <button type="submit" class="btn-primary-glow px-6 py-2.5 flex items-center gap-2">
                     <i class="bi bi-cloud-check"></i> Simpan Perubahan
                 </button>
-                <a href="index.php?act=penilaian_history" class="btn-glass px-6 py-2.5 text-muted hover:text-white">
+                <a href="index.php?act=penilaian_history" class="btn-glass px-6 py-2.5 text-muted hover:text-gray-800">
                     Batal
                 </a>
             </div>

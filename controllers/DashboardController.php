@@ -34,24 +34,33 @@ class DashboardController {
             $bobot = array_column($kriteria, 'bobot');
             $atribut = array_column($kriteria, 'atribut');
             $kriteriaIds = array_column($kriteria, 'id');
-            $matriks = [];
+            $matriksPunishment = [];
+            $matriksReward = [];
             $karyawanIds = [];
+            
+            $mulaiReward = date('Y-m-01', strtotime('-5 months', strtotime($periodeTerakhir)));
 
             foreach ($karyawan as $k) {
                 $karyawanIds[] = $k['id'];
-                $row = [];
+                $rowPunishment = [];
+                $rowReward = [];
                 foreach ($kriteriaIds as $kid) {
-                    $nilai = $penilaianModel->getNilai($k['id'], $kid, $periodeTerakhir);
-                    $row[] = $nilai !== null ? (float)$nilai : 0;
+                    $nilaiPunish = $penilaianModel->getNilai($k['id'], $kid, $periodeTerakhir);
+                    $rowPunishment[] = $nilaiPunish !== null ? (float)$nilaiPunish : 0;
+                    
+                    $nilaiReward = $penilaianModel->getRataNilaiPeriode($k['id'], $kid, $mulaiReward, $periodeTerakhir);
+                    $rowReward[] = $nilaiReward !== null ? (float)$nilaiReward : 0;
                 }
-                $matriks[] = $row;
+                $matriksPunishment[] = $rowPunishment;
+                $matriksReward[] = $rowReward;
             }
 
-            $topsis = new TopsisCalculator($matriks, $bobot, $atribut);
-            $topsis->hitung();
-            $ranking = $topsis->getRanking($karyawanIds);
-            $top5 = array_slice($ranking, 0, 5);
-
+            // Hitung TOPSIS untuk Reward (Rata-rata 6 bulan)
+            $topsisReward = new TopsisCalculator($matriksReward, $bobot, $atribut);
+            $topsisReward->hitung();
+            $rankingReward = $topsisReward->getRanking($karyawanIds);
+            
+            $top5 = array_slice($rankingReward, 0, 5);
             foreach ($top5 as &$item) {
                 $kary = $karyawanModel->getById($item['id_karyawan']);
                 $item['nama'] = $kary['nama'] ?? '-';
@@ -62,17 +71,25 @@ class DashboardController {
             // Get Best and Worst
             $bestKaryawan = null;
             $worstKaryawan = null;
-            if (!empty($ranking)) {
-                $best = $ranking[0];
+            
+            if (!empty($rankingReward)) {
+                $best = $rankingReward[0];
                 $kBest = $karyawanModel->getById($best['id_karyawan']);
                 $bestKaryawan = [
                     'nama' => $kBest['nama'] ?? '-',
                     'jabatan' => $kBest['jabatan'] ?? '',
                     'nilai' => $best['nilai']
                 ];
+            }
 
+            // Hitung TOPSIS untuk Punishment (1 bulan terakhir)
+            $topsisPunishment = new TopsisCalculator($matriksPunishment, $bobot, $atribut);
+            $topsisPunishment->hitung();
+            $rankingPunishment = $topsisPunishment->getRanking($karyawanIds);
+
+            if (!empty($rankingPunishment)) {
                 // Remove zero scores from worst consideration to avoid unfair punishment if no data
-                $nonZeroRanking = array_filter($ranking, fn($r) => $r['nilai'] > 0);
+                $nonZeroRanking = array_filter($rankingPunishment, fn($r) => $r['nilai'] > 0);
                 if (!empty($nonZeroRanking)) {
                     $worst = end($nonZeroRanking);
                     $kWorst = $karyawanModel->getById($worst['id_karyawan']);

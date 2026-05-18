@@ -17,8 +17,8 @@
     
     <div class="glass-panel p-10 shadow-2xl rounded-[2rem]" id="loginCard">
         <div class="text-center mb-10">
-            <h1 class="text-3xl font-extrabold text-white tracking-tight">SPK TOPSIS</h1>
-            <p class="text-muted text-sm mt-2 font-medium">Reward & Punishment Management System</p>
+            <h1 class="text-3xl font-extrabold tracking-tight" style="color: #ffffff; text-shadow: 0 0 20px rgba(61,189,168,0.3);">SPK TOPSIS</h1>
+            <p class="text-sm mt-2 font-medium" style="color: #a8b2bc;">Reward & Punishment Management System</p>
         </div>
     
     <?php if (isset($error)): ?>
@@ -29,18 +29,18 @@
     
     <form method="POST" class="space-y-6">
         <div>
-            <label class="block text-muted text-xs font-bold uppercase tracking-wider mb-2">Username</label>
+            <label class="block text-xs font-bold uppercase tracking-wider mb-2" style="color: #c0c8d2;">Username</label>
             <div class="relative">
                 <i class="bi bi-person-fill absolute left-3 top-1/2 transform -translate-y-1/2 text-muted"></i>
                 <input type="text" name="username" class="glass-input w-full py-3 pl-10 pr-4" placeholder="admin / hrd / direktur" autofocus>
             </div>
         </div>
         <div>
-            <label class="block text-muted text-xs font-bold uppercase tracking-wider mb-2">Password</label>
+            <label class="block text-xs font-bold uppercase tracking-wider mb-2" style="color: #c0c8d2;">Password</label>
             <div class="relative">
                 <i class="bi bi-lock-fill absolute left-3 top-1/2 transform -translate-y-1/2 text-muted"></i>
                 <input type="password" name="password" id="passwordInput" class="glass-input w-full py-3 pl-10 pr-11" placeholder="••••••••">
-                <button type="button" id="togglePassword" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted hover:text-white transition-colors duration-200 focus:outline-none" tabindex="-1" title="Tampilkan / Sembunyikan Password">
+                <button type="button" id="togglePassword" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 transform -translate-y-1/2 transition-colors duration-200 focus:outline-none" style="color: #a8b2bc;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#a8b2bc'" tabindex="-1" title="Tampilkan / Sembunyikan Password">
                     <i class="bi bi-eye-slash" id="toggleIcon" style="font-size:1.1rem;"></i>
                 </button>
             </div>
@@ -52,7 +52,7 @@
     
     </div>
     <div class="text-center mt-6 mb-6">
-        <p class="text-muted text-[10px] uppercase tracking-[0.2em] font-bold">Secure Access • PT. Swadharma Griyasatya</p>
+        <p class="text-[10px] uppercase tracking-[0.2em] font-bold" style="color: #8b9baa;">Secure Access • PT. Swadharma Griyasatya</p>
     </div>
 </div>
 

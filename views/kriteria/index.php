@@ -4,7 +4,7 @@ include __DIR__ . '/../layouts/header.php';
 ?>
 <div class="glass-panel overflow-hidden">
     <div class="px-6 py-5 flex justify-between items-center flex-wrap gap-4 border-b" style="border-color: var(--card-border);">
-        <h2 class="text-xl font-bold text-white"><i class="bi bi-sliders text-primary mr-2"></i> Daftar Kriteria</h2>
+        <h2 class="text-xl font-bold text-gray-800"><i class="bi bi-sliders text-primary mr-2"></i> Daftar Kriteria</h2>
         <?php if ($_SESSION['user']['role'] === 'admin'): ?>
         <a href="index.php?act=kriteria&sub=create" class="btn-primary-glow px-4 py-2 text-sm flex items-center gap-2"><i class="bi bi-plus-lg"></i> Tambah Kriteria</a>
         <?php endif; ?>
@@ -45,7 +45,7 @@ include __DIR__ . '/../layouts/header.php';
                 <?php else: ?>
                 <?php foreach(($kriteria ?? []) as $k): ?>
                 <tr>
-                    <td class="font-medium text-white"><?= htmlspecialchars($k['nama_kriteria']) ?></td>
+                    <td class="font-medium text-gray-800"><?= htmlspecialchars($k['nama_kriteria']) ?></td>
                     <td class="font-mono text-primary font-bold"><?= number_format((float)$k['bobot'], 2) ?></td>
                     <td class="w-1/4">
                         <div class="w-full rounded-full h-1.5 mb-1" style="background: rgba(255,255,255,0.1);">
@@ -63,8 +63,8 @@ include __DIR__ . '/../layouts/header.php';
                     <td>
                         <div class="flex gap-2">
                             <?php if ($_SESSION['user']['role'] === 'admin'): ?>
-                            <a href="index.php?act=kriteria&sub=edit&id=<?= $k['id'] ?>" class="text-primary hover:text-white transition p-1"><i class="bi bi-pencil-square"></i></a>
-                            <a href="#" onclick="confirmDelete('index.php?act=kriteria&sub=delete&id=<?= $k['id'] ?>')" class="text-danger hover:text-white transition p-1"><i class="bi bi-trash-fill"></i></a>
+                            <a href="index.php?act=kriteria&sub=edit&id=<?= $k['id'] ?>" class="text-primary hover:text-gray-800 transition p-1"><i class="bi bi-pencil-square"></i></a>
+                            <a href="#" onclick="confirmDelete('index.php?act=kriteria&sub=delete&id=<?= $k['id'] ?>')" class="text-danger hover:text-gray-800 transition p-1"><i class="bi bi-trash-fill"></i></a>
                             <?php else: ?>
                             <span class="text-muted text-xs">—</span>
                             <?php endif; ?>

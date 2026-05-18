@@ -34,7 +34,7 @@ $initial  = strtoupper(substr($user['username'], 0, 1));
             <form action="index.php?act=profil_upload_photo" method="POST" enctype="multipart/form-data" id="photoForm">
                 <div class="relative mb-5 group cursor-pointer" onclick="document.getElementById('photoInput').click()">
                     <!-- Avatar circle -->
-                    <div class="w-28 h-28 rounded-full shadow-[0_8px_30px_rgba(34,87,79,0.5)] flex items-center justify-center text-4xl font-black text-white border-4 border-[#0d2524] overflow-hidden transition-transform group-hover:scale-105"
+                    <div class="w-28 h-28 rounded-full shadow-[0_8px_30px_rgba(34,87,79,0.5)] flex items-center justify-center text-4xl font-black text-gray-800 border-4 border-[#0d2524] overflow-hidden transition-transform group-hover:scale-105"
                          style="background: linear-gradient(135deg, #22574f, #ea580c);">
                         <?php if ($photoUrl): ?>
                         <img id="avatarPreview" src="<?= $photoUrl ?>" alt="Foto Profil"
@@ -57,30 +57,30 @@ $initial  = strtoupper(substr($user['username'], 0, 1));
                 </div>
             </form>
 
-            <h2 class="text-2xl font-extrabold text-white tracking-tight mb-1"><?= htmlspecialchars($user['username']) ?></h2>
+            <h2 class="text-2xl font-extrabold text-gray-800 tracking-tight mb-1"><?= htmlspecialchars($user['username']) ?></h2>
             <div class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold bg-primary/20 text-teal-300 border border-primary/30 shadow-inner mb-8 tracking-wider">
                 <i class="bi bi-person-badge-fill mr-2"></i> <?= strtoupper(htmlspecialchars($user['role'])) ?>
             </div>
 
             <!-- ── Info Cards ── -->
             <div class="w-full space-y-3">
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center gap-4">
+                <div class="bg-gray-50 border border-white/10 rounded-2xl p-4 flex items-center gap-4">
                     <div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-teal-400">
                         <i class="bi bi-person-fill text-xl"></i>
                     </div>
                     <div>
                         <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Username</p>
-                        <p class="text-sm font-semibold text-white"><?= htmlspecialchars($user['username']) ?></p>
+                        <p class="text-sm font-semibold text-gray-800"><?= htmlspecialchars($user['username']) ?></p>
                     </div>
                 </div>
 
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center gap-4">
+                <div class="bg-gray-50 border border-white/10 rounded-2xl p-4 flex items-center gap-4">
                     <div class="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center text-orange-400">
                         <i class="bi bi-shield-lock-fill text-xl"></i>
                     </div>
                     <div>
                         <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Hak Akses</p>
-                        <p class="text-sm font-semibold text-white"><?= ucfirst(htmlspecialchars($user['role'])) ?></p>
+                        <p class="text-sm font-semibold text-gray-800"><?= ucfirst(htmlspecialchars($user['role'])) ?></p>
                     </div>
                 </div>
             </div>
@@ -88,14 +88,14 @@ $initial  = strtoupper(substr($user['username'], 0, 1));
             <!-- ── Ganti Password (collapsible) ── -->
             <div class="w-full mt-5">
                 <button onclick="togglePwdForm()" id="togglePwdBtn"
-                        class="w-full py-3 px-4 rounded-2xl bg-white/5 border border-white/10 text-sm font-semibold text-muted hover:text-white hover:bg-white/10 transition flex items-center justify-between">
+                        class="w-full py-3 px-4 rounded-2xl bg-gray-50 border border-white/10 text-sm font-semibold text-muted hover:text-gray-800 hover:bg-gray-100 transition flex items-center justify-between">
                     <span class="flex items-center gap-2"><i class="bi bi-key-fill text-primary"></i> Ganti Password</span>
                     <i class="bi bi-chevron-down text-xs transition-transform" id="pwdChevron"></i>
                 </button>
 
                 <div id="pwdForm" class="hidden mt-3">
                     <form action="index.php?act=profil_change_password" method="POST"
-                          class="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-4">
+                          class="bg-gray-50 border border-white/10 rounded-2xl p-5 space-y-4">
                         <div>
                             <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Password Saat Ini</label>
                             <div class="relative">
@@ -103,7 +103,7 @@ $initial  = strtoupper(substr($user['username'], 0, 1));
                                 <input type="password" name="current_password" id="cur_pwd"
                                        class="glass-input w-full py-2.5 pl-9 pr-10" required placeholder="••••••••">
                                 <button type="button" onclick="togglePwd('cur_pwd','cur_eye')"
-                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-white transition" tabindex="-1">
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-gray-800 transition" tabindex="-1">
                                     <i class="bi bi-eye-slash" id="cur_eye"></i>
                                 </button>
                             </div>
@@ -115,7 +115,7 @@ $initial  = strtoupper(substr($user['username'], 0, 1));
                                 <input type="password" name="new_password" id="new_pwd"
                                        class="glass-input w-full py-2.5 pl-9 pr-10" required placeholder="Min. 6 karakter">
                                 <button type="button" onclick="togglePwd('new_pwd','new_eye')"
-                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-white transition" tabindex="-1">
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-gray-800 transition" tabindex="-1">
                                     <i class="bi bi-eye-slash" id="new_eye"></i>
                                 </button>
                             </div>
@@ -127,7 +127,7 @@ $initial  = strtoupper(substr($user['username'], 0, 1));
                                 <input type="password" name="confirm_password" id="conf_pwd"
                                        class="glass-input w-full py-2.5 pl-9 pr-10" required placeholder="Ulangi password baru">
                                 <button type="button" onclick="togglePwd('conf_pwd','conf_eye')"
-                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-white transition" tabindex="-1">
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-gray-800 transition" tabindex="-1">
                                     <i class="bi bi-eye-slash" id="conf_eye"></i>
                                 </button>
                             </div>

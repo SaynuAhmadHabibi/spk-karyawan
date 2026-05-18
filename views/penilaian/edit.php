@@ -3,9 +3,9 @@ $page_title = 'Edit Penilaian Karyawan';
 include __DIR__ . '/../layouts/header.php'; 
 ?>
 <div class="glass-panel p-8 max-w-2xl mx-auto">
-    <h2 class="text-2xl font-bold mb-2 text-white"><i class="bi bi-pencil-square text-primary mr-2"></i> Edit Penilaian</h2>
+    <h2 class="text-2xl font-bold mb-2 text-gray-800"><i class="bi bi-pencil-square text-primary mr-2"></i> Edit Penilaian</h2>
     <div class="mb-8 p-3 badge-glass" style="background: rgba(255,255,255,0.02)">
-        <div class="text-sm font-medium text-white"><?= htmlspecialchars($karyawan['nama']) ?></div>
+        <div class="text-sm font-medium text-gray-800"><?= htmlspecialchars($karyawan['nama']) ?></div>
         <div class="text-xs text-muted">Periode: <?= date('F Y', strtotime($periode)) ?></div>
     </div>
 
@@ -23,8 +23,8 @@ include __DIR__ . '/../layouts/header.php';
                 </thead>
                 <tbody>
                     <?php foreach($kriteria as $krit): ?>
-                    <tr class="hover:bg-white/5 transition">
-                        <td class="font-medium text-white"><?= htmlspecialchars($krit['nama_kriteria']) ?></td>
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="font-medium text-gray-800"><?= htmlspecialchars($krit['nama_kriteria']) ?></td>
                         <td class="text-center">
                             <input type="number" step="0.01" min="0" max="100" 
                                    name="nilai[<?= $krit['id'] ?>]" 
@@ -42,7 +42,7 @@ include __DIR__ . '/../layouts/header.php';
             <button type="submit" class="btn-primary-glow px-6 py-2.5 flex items-center gap-2">
                 <i class="bi bi-cloud-check"></i> Simpan Perubahan
             </button>
-            <a href="index.php?act=penilaian_history" class="btn-glass px-6 py-2.5 text-muted hover:text-white">
+            <a href="index.php?act=penilaian_history" class="btn-glass px-6 py-2.5 text-muted hover:text-gray-800">
                 Batal & Kembali
             </a>
         </div>
