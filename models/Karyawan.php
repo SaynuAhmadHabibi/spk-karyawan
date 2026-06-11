@@ -1,10 +1,13 @@
 <?php
 class Karyawan {
-    private $pdo;
-    private $columnsCache = null;
-    public function __construct($pdo) { $this->pdo = $pdo; }
+    private \PDO $pdo;
+    private ?array $columnsCache = null;
     
-    public function getAll() {
+    public function __construct(\PDO $pdo) { 
+        $this->pdo = $pdo; 
+    }
+    
+    public function getAll(): array {
         try {
             $stmt = $this->pdo->query("SELECT * FROM karyawan WHERE status='aktif' ORDER BY nama");
             return $stmt->fetchAll();
@@ -17,18 +20,24 @@ class Karyawan {
         }
     }
     
-    public function getAllWithNonaktif() {
+    public function getAllWithNonaktif(): array {
         $stmt = $this->pdo->query("SELECT * FROM karyawan ORDER BY nama");
         return $stmt->fetchAll();
     }
     
-    public function getById($id) {
+    public function getById(int|string $id): ?array {
         $stmt = $this->pdo->prepare("SELECT * FROM karyawan WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch();
     }
     
-    public function create($nama, $jabatan, $divisi, $tanggal_masuk, $status) {
+    public function create(
+        string $nama,
+        string $jabatan,
+        string $divisi,
+        ?string $tanggal_masuk,
+        string $status
+    ): bool {
         $data = [
             'nama' => $nama,
             'jabatan' => $jabatan,
@@ -47,7 +56,14 @@ class Karyawan {
         return $stmt->execute($values);
     }
     
-    public function update($id, $nama, $jabatan, $divisi, $tanggal_masuk, $status) {
+    public function update(
+        int|string $id,
+        string $nama,
+        string $jabatan,
+        string $divisi,
+        ?string $tanggal_masuk,
+        string $status
+    ): bool {
         $data = [
             'nama' => $nama,
             'jabatan' => $jabatan,
@@ -68,7 +84,7 @@ class Karyawan {
         return $stmt->execute($values);
     }
 
-    private function getColumns() {
+    private function getColumns(): array {
         if ($this->columnsCache !== null) return $this->columnsCache;
         $stmt = $this->pdo->query("DESCRIBE karyawan");
         $cols = [];
@@ -77,7 +93,7 @@ class Karyawan {
         return $cols;
     }
     
-    public function delete($id) {
+    public function delete(int|string $id): bool {
         $stmt = $this->pdo->prepare("DELETE FROM karyawan WHERE id = ?");
         return $stmt->execute([$id]);
     }

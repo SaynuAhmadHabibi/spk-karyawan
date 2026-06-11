@@ -2,21 +2,21 @@
 require_once __DIR__ . '/../models/Karyawan.php';
 
 class KaryawanController {
-    private $karyawanModel;
-    private $role;
+    private Karyawan $karyawanModel;
+    private string $role;
 
-    public function __construct($pdo) {
+    public function __construct(\PDO $pdo) {
         $this->karyawanModel = new Karyawan($pdo);
         $this->role = $_SESSION['user']['role'] ?? '';
     }
 
-    public function index() {
+    public function index(): void {
         $page_title = 'Manajemen Karyawan';
         $karyawan = $this->karyawanModel->getAllWithNonaktif();
         include __DIR__ . '/../views/karyawan/index.php';
     }
 
-    public function create() {
+    public function create(): void {
         $page_title = 'Tambah Karyawan';
         if ($this->role === 'direktur') {
             $_SESSION['error'] = 'Akses ditolak: Anda hanya memiliki hak lihat.';
@@ -41,7 +41,7 @@ class KaryawanController {
         include __DIR__ . '/../views/karyawan/create.php';
     }
 
-    public function edit($id) {
+    public function edit(int|string $id): void {
         $page_title = 'Edit Karyawan';
         if ($this->role === 'direktur') {
             $_SESSION['error'] = 'Akses ditolak: Anda hanya memiliki hak lihat.';
@@ -73,7 +73,7 @@ class KaryawanController {
         include __DIR__ . '/../views/karyawan/edit.php';
     }
 
-    public function delete($id) {
+    public function delete(int|string $id): void {
         if ($this->role === 'direktur') {
             $_SESSION['error'] = 'Akses ditolak: Anda hanya memiliki hak lihat.';
             header('Location: index.php?act=karyawan');

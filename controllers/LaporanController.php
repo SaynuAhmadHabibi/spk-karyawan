@@ -3,13 +3,16 @@ require_once __DIR__ . '/../models/Karyawan.php';
 require_once __DIR__ . '/../models/Kriteria.php';
 
 class LaporanController {
-    private $pdo;
-    public function __construct($pdo) { $this->pdo = $pdo; }
+    private \PDO $pdo;
+    
+    public function __construct(\PDO $pdo) { 
+        $this->pdo = $pdo; 
+    }
 
     /**
      * Export ke CSV (Excel) - delimiter titik koma agar kompatibel Excel Indonesia
      */
-    private function formatTanggalIndo($date) {
+    private function formatTanggalIndo(string $date): string {
         $bulan = array (
             1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
             'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
@@ -18,7 +21,7 @@ class LaporanController {
         return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
     }
 
-    public function exportExcel($tipe) {
+    public function exportExcel(string $tipe): void {
         $data = $_SESSION['hasil_' . $tipe] ?? null;
         if (!$data) die('Tidak ada data.');
         
@@ -176,7 +179,7 @@ class LaporanController {
     /**
      * Export ke PDF dengan Dompdf (jika ada) atau fallback print
      */
-    public function exportPdf($tipe) {
+    public function exportPdf(string $tipe): void {
         $data = $_SESSION['hasil_' . $tipe] ?? null;
         if (!$data) die('Tidak ada data.');
         
@@ -199,7 +202,7 @@ class LaporanController {
         exit;
     }
 
-    private function generatePdfHtml($tipe, $data) {
+    private function generatePdfHtml(string $tipe, array $data): string {
         $title = strtoupper($tipe);
         $judul = ($tipe == 'reward') ? 'REWARD (3 Karyawan Terbaik)' : 'PUNISHMENT (3 Karyawan Terendah)';
         
