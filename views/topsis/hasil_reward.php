@@ -89,7 +89,6 @@ if (!empty($ranking)) {
                     <td class="text-center font-bold text-lg <?= $isReward ? explode(' ', $medals[$rank-1])[0] : 'text-muted' ?>">
                         <?= $isReward ? explode(' ', $medals[$rank-1])[1] : $rank ?>
                     </td>
-                    <td class="font-mono text-muted"><?= htmlspecialchars($k['nik']??'-') ?></td>
                     <td class="font-medium <?= $rank == 1 ? 'text-warning' : 'text-white' ?>"><?= htmlspecialchars($k['nama']??'-') ?></td>
                     <td><?= htmlspecialchars($k['divisi']??'-') ?></td>
                     <td class="font-mono text-primary font-bold"><?= number_format((float)$r['nilai'], 4) ?></td>

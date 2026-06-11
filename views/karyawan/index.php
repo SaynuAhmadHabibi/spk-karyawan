@@ -1,5 +1,9 @@
 <?php 
+/**
+ * @var array $karyawan
+ */
 $page_title = 'Data Karyawan';
+$karyawan = $karyawan ?? [];
 require_once __DIR__ . '/../layouts/header.php'; 
 ?>
 <div class="glass-panel overflow-hidden">
@@ -30,10 +34,9 @@ require_once __DIR__ . '/../layouts/header.php';
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>NIK</th>
                     <th>Nama</th>
-                    <th>Jabatan</th>
                     <th>Divisi</th>
+                    <th>Jabatan</th>
                     <th>Tgl Masuk</th>
                     <th>Status</th>
                     <th>Aksi</th>
@@ -42,7 +45,7 @@ require_once __DIR__ . '/../layouts/header.php';
             <tbody>
                 <?php if (empty($karyawan)): ?>
                 <tr>
-                    <td colspan="8" class="px-6 py-12 text-center text-muted">
+                    <td colspan="7" class="px-6 py-12 text-center text-muted">
                         <i class="bi bi-inbox text-4xl opacity-50 block mb-3"></i>
                         <p>Belum ada data karyawan.</p>
                     </td>
@@ -51,10 +54,9 @@ require_once __DIR__ . '/../layouts/header.php';
                 <?php foreach ($karyawan as $i => $k): ?>
                 <tr>
                     <td class="text-muted"><?= $i+1 ?></td>
-                    <td class="font-mono text-muted"><?= htmlspecialchars($k['nik']) ?></td>
                     <td class="font-medium text-gray-800"><?= htmlspecialchars($k['nama']) ?></td>
-                    <td><?= htmlspecialchars($k['jabatan'] ?? '-') ?></td>
                     <td><?= htmlspecialchars($k['divisi'] ?? '-') ?></td>
+                    <td><?= htmlspecialchars($k['jabatan'] ?? '-') ?></td>
                     <td class="text-muted"><?= $k['tanggal_masuk'] ? date('d M Y', strtotime($k['tanggal_masuk'])) : '-' ?></td>
                     <td>
                         <?php if (($k['status'] ?? 'aktif') === 'aktif'): ?>

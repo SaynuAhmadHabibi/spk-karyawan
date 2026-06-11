@@ -263,7 +263,6 @@ if ($tipe === 'punishment') {
                         <td style="padding:7px 14px;text-align:center;font-weight:700;border-bottom:1px solid rgba(255,255,255,.03)">
                             <?php if ($rank==1): ?>🥇<?php elseif ($rank==2): ?>🥈<?php elseif ($rank==3): ?>🥉<?php else: ?><span style="color:#c0c8d2"><?= $rank ?></span><?php endif; ?>
                         </td>
-                        <td style="padding:7px 14px;font-family:monospace;color:#c0c8d2;border-bottom:1px solid rgba(255,255,255,.03)"><?= htmlspecialchars($kary['nik'] ?? '-') ?></td>
                         <td style="padding:7px 14px;color:#fff;font-weight:500;border-bottom:1px solid rgba(255,255,255,.03)"><?= htmlspecialchars($kary['nama'] ?? '-') ?></td>
                         <td style="padding:7px 14px;color:#c0c8d2;border-bottom:1px solid rgba(255,255,255,.03)"><?= htmlspecialchars($kary['divisi'] ?? '-') ?></td>
                         <td style="padding:7px 14px;font-family:monospace;font-weight:700;text-align:right;color:var(--primary);border-bottom:1px solid rgba(255,255,255,.03)"><?= number_format((float)$r['nilai'], 4) ?></td>

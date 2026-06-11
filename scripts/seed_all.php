@@ -43,20 +43,19 @@ try {
     $jabatans = ['Staff', 'Operator', 'Supervisor', 'Admin', 'Teknisi'];
     $divisis = ['Produksi', 'Gudang', 'Pemasaran', 'Keuangan', 'HRD', 'IT', 'Operasional'];
 
-    $stmtKaryawan = $pdo->prepare("INSERT INTO karyawan (nik, nama, jabatan, divisi, tanggal_masuk, status) VALUES (?, ?, ?, ?, ?, 'aktif')");
+    $stmtKaryawan = $pdo->prepare("INSERT INTO karyawan (nama, jabatan, divisi, tanggal_masuk, status) VALUES (?, ?, ?, ?, 'aktif')");
     
     $pdo->beginTransaction(); // Mulai transaksi agar cepat
 
     $karyawanIds = [];
     for ($i = 0; $i < 45; $i++) {
-        $nik = 'KRY' . date('Y') . sprintf('%03d', $i + 1);
         $nama = $namas[$i];
         $jabatan = $jabatans[array_rand($jabatans)];
         $divisi = $divisis[array_rand($divisis)];
         $days_ago = rand(365, 1800);
         $tanggal_masuk = date('Y-m-d', strtotime("-$days_ago days"));
 
-        $stmtKaryawan->execute([$nik, $nama, $jabatan, $divisi, $tanggal_masuk]);
+        $stmtKaryawan->execute([$nama, $jabatan, $divisi, $tanggal_masuk]);
         $karyawanIds[] = $pdo->lastInsertId();
     }
 

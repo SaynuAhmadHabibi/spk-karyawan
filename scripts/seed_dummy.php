@@ -57,13 +57,12 @@ try {
     // ============================================================
     // INSERT 50 KARYAWAN
     // ============================================================
-    $stmtKaryawan = $pdo->prepare("INSERT INTO karyawan (nik, nama, jabatan, divisi, tanggal_masuk, status) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmtKaryawan = $pdo->prepare("INSERT INTO karyawan (nama, jabatan, divisi, tanggal_masuk, status) VALUES (?, ?, ?, ?, ?)");
 
     $insertedIds = [];
     echo "━━━ Menambahkan 50 Karyawan ━━━\n";
 
     for ($i = 0; $i < 50; $i++) {
-        $nik = 'KRY' . str_pad($i + 1, 4, '0', STR_PAD_LEFT);
         $nama = $nama_depan[$i] . ' ' . $nama_belakang[array_rand($nama_belakang)];
         $jabatan = $jabatan_list[array_rand($jabatan_list)];
         $divisi = $divisi_list[array_rand($divisi_list)];
@@ -71,11 +70,11 @@ try {
         $tglMasuk = date('Y-m-d', mt_rand(strtotime('2020-01-01'), strtotime('2025-12-31')));
         $status = $status_list[array_rand($status_list)];
 
-        $stmtKaryawan->execute([$nik, $nama, $jabatan, $divisi, $tglMasuk, $status]);
+        $stmtKaryawan->execute([$nama, $jabatan, $divisi, $tglMasuk, $status]);
         $insertedIds[] = $pdo->lastInsertId();
 
         $statusIcon = $status === 'aktif' ? '🟢' : '🔴';
-        echo "  $statusIcon #" . str_pad($i + 1, 2, '0', STR_PAD_LEFT) . " $nik | $nama | $jabatan | $divisi\n";
+        echo "  $statusIcon #" . str_pad($i + 1, 2, '0', STR_PAD_LEFT) . " | $nama | $jabatan | $divisi\n";
     }
 
     echo "\n✓ 50 karyawan berhasil ditambahkan\n\n";

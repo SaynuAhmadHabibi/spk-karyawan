@@ -10,7 +10,7 @@ header('Content-Type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=' . $filename);
 
 $output = fopen('php://output', 'w');
-fputcsv($output, ['Peringkat', 'NIK', 'Nama Karyawan', 'Divisi', 'Nilai Preferensi', 'Keputusan']);
+fputcsv($output, ['Peringkat', 'Nama Karyawan', 'Divisi', 'Nilai Preferensi', 'Keputusan']);
 
 $total = count($data['ranking']);
 $rank = 1;
@@ -29,7 +29,6 @@ foreach ($data['ranking'] as $r) {
 
     fputcsv($output, [
         $rank,
-        $karyawan['nik'] ?? '',
         $karyawan['nama'] ?? '',
         $karyawan['divisi'] ?? '',
         number_format((float)$r['nilai'], 4, '.', ''),

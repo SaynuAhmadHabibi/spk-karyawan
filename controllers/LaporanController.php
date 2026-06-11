@@ -143,7 +143,6 @@ class LaporanController {
             
             echo "<tr style='$bgColor'>";
             echo "<td style='border: 1pt solid #000000; text-align: center;'>$rank</td>";
-            echo "<td style='border: 1pt solid #000000;'>" . htmlspecialchars($k['nik']) . "</td>";
             echo "<td style='border: 1pt solid #000000;'>" . htmlspecialchars($k['nama']) . "</td>";
             echo "<td style='border: 1pt solid #000000;'>" . htmlspecialchars($k['divisi']) . "</td>";
             echo "<td style='border: 1pt solid #000000; text-align: center;'>$nilaiFormat</td>";
@@ -240,11 +239,10 @@ class LaporanController {
             $nilaiFormatted = number_format((float)$r['nilai'], 4, '.', '');
             $rows .= "<tr class='$rowClass'>
                         <td style='text-align:center; width:10%;'>$rank</td>
-                        <td style='width:15%;'>" . htmlspecialchars($k['nik'] ?? '') . "</td>
                         <td style='width:25%;'>" . htmlspecialchars($k['nama'] ?? '') . "</td>
-                        <td style='width:20%;'>" . htmlspecialchars($k['divisi'] ?? '') . "</td>
-                        <td style='text-align:center; width:15%;'>$nilaiFormatted</td>
-                        <td style='text-align:center; width:15%;'><strong>$status</strong></td>
+                        <td style='width:25%;'>" . htmlspecialchars($k['divisi'] ?? '') . "</td>
+                        <td style='text-align:center; width:20%;'>$nilaiFormatted</td>
+                        <td style='text-align:center; width:20%;'><strong>$status</strong></td>
                        </tr>";
             $rank++;
         }

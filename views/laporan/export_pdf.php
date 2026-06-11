@@ -28,7 +28,6 @@ $title = strtoupper($tipe ?? 'REWARD');
     <thead>
       <tr>
         <th class="center">Peringkat</th>
-        <th>NIK</th>
         <th>Nama Karyawan</th>
         <th>Divisi</th>
         <th class="center">Nilai Preferensi</th>
@@ -45,7 +44,6 @@ $title = strtoupper($tipe ?? 'REWARD');
       ?>
       <tr>
         <td class="center"><?= $rank++ ?></td>
-        <td><?= htmlspecialchars($k['nik'] ?? '') ?></td>
         <td><?= htmlspecialchars($k['nama'] ?? '') ?></td>
         <td><?= htmlspecialchars($k['divisi'] ?? '') ?></td>
         <td class="center"><?= number_format((float)$r['nilai'], 4) ?></td>

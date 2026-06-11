@@ -48,11 +48,10 @@ try {
     $jabatans = ['Staff', 'Operator', 'Supervisor', 'Admin', 'Teknisi'];
     $divisis = ['Produksi', 'Gudang', 'Pemasaran', 'Keuangan', 'HRD', 'IT', 'Operasional'];
 
-    $stmt = $pdo->prepare("INSERT INTO karyawan (nik, nama, jabatan, divisi, tanggal_masuk, status) VALUES (?, ?, ?, ?, ?, 'aktif')");
+    $stmt = $pdo->prepare("INSERT INTO karyawan (nama, jabatan, divisi, tanggal_masuk, status) VALUES (?, ?, ?, ?, 'aktif')");
     
     $insertedCount = 0;
     for ($i = 0; $i < 45; $i++) {
-        $nik = 'KRY' . date('Y') . sprintf('%03d', $i + 1);
         $nama = $namas[$i];
         $jabatan = $jabatans[array_rand($jabatans)];
         $divisi = $divisis[array_rand($divisis)];
@@ -61,7 +60,7 @@ try {
         $days_ago = rand(365, 1800);
         $tanggal_masuk = date('Y-m-d', strtotime("-$days_ago days"));
 
-        $stmt->execute([$nik, $nama, $jabatan, $divisi, $tanggal_masuk]);
+        $stmt->execute([$nama, $jabatan, $divisi, $tanggal_masuk]);
         $insertedCount++;
     }
 

@@ -24,14 +24,13 @@ class KaryawanController {
             exit;
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nik = trim($_POST['nik'] ?? '');
             $nama = trim($_POST['nama'] ?? '');
             $jabatan = trim($_POST['jabatan'] ?? '');
             $divisi = trim($_POST['divisi'] ?? '');
             $tanggal_masuk = $_POST['tanggal_masuk'] ?? null;
             $status = $_POST['status'] ?? 'aktif';
 
-            if ($this->karyawanModel->create($nik, $nama, $jabatan, $divisi, $tanggal_masuk, $status)) {
+            if ($this->karyawanModel->create($nama, $jabatan, $divisi, $tanggal_masuk, $status)) {
                 $_SESSION['success'] = 'Karyawan berhasil ditambahkan.';
                 header('Location: index.php?act=karyawan');
                 exit;
@@ -57,14 +56,13 @@ class KaryawanController {
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nik = trim($_POST['nik'] ?? '');
             $nama = trim($_POST['nama'] ?? '');
             $jabatan = trim($_POST['jabatan'] ?? '');
             $divisi = trim($_POST['divisi'] ?? '');
             $tanggal_masuk = $_POST['tanggal_masuk'] ?? null;
             $status = $_POST['status'] ?? 'aktif';
 
-            if ($this->karyawanModel->update($id, $nik, $nama, $jabatan, $divisi, $tanggal_masuk, $status)) {
+            if ($this->karyawanModel->update($id, $nama, $jabatan, $divisi, $tanggal_masuk, $status)) {
                 $_SESSION['success'] = 'Karyawan berhasil diupdate.';
                 header('Location: index.php?act=karyawan');
                 exit;

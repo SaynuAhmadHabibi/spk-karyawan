@@ -28,9 +28,8 @@ class Karyawan {
         return $stmt->fetch();
     }
     
-    public function create($nik, $nama, $jabatan, $divisi, $tanggal_masuk, $status) {
+    public function create($nama, $jabatan, $divisi, $tanggal_masuk, $status) {
         $data = [
-            'nik' => $nik,
             'nama' => $nama,
             'jabatan' => $jabatan,
             'divisi' => $divisi,
@@ -48,9 +47,8 @@ class Karyawan {
         return $stmt->execute($values);
     }
     
-    public function update($id, $nik, $nama, $jabatan, $divisi, $tanggal_masuk, $status) {
+    public function update($id, $nama, $jabatan, $divisi, $tanggal_masuk, $status) {
         $data = [
-            'nik' => $nik,
             'nama' => $nama,
             'jabatan' => $jabatan,
             'divisi' => $divisi,

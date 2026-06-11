@@ -95,7 +95,6 @@ $hasData = ($debugInfo['data_penilaian_ditemukan'] ?? 0) > 0;
                 ?>
                 <tr style="<?= $rowStyle ?>">
                     <td class="text-center font-bold <?= $isPunishment ? 'text-danger text-lg' : 'text-muted' ?>"><?= $no ?></td>
-                    <td class="font-mono text-muted"><?= htmlspecialchars($k['nik'] ?? '-') ?></td>
                     <td class="font-medium <?= $isPunishment ? 'text-danger' : 'text-gray-800' ?>"><?= htmlspecialchars($k['nama'] ?? '-') ?></td>
                     <td><?= htmlspecialchars($k['divisi'] ?? '-') ?></td>
                     <td class="font-mono <?= $isPunishment ? 'text-danger font-bold' : 'text-primary' ?>"><?= number_format((float)$r['nilai'], 4) ?></td>

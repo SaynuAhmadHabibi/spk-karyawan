@@ -1,7 +1,13 @@
 <?php 
+/**
+ * @var array $karyawan
+ * @var string $error
+ */
 $page_title = 'Edit Karyawan';
 include __DIR__ . '/../layouts/header.php'; 
-$k = $karyawan ?? [];
+$karyawan = $karyawan ?? [];
+$error = $error ?? null;
+$k = $karyawan;
 ?>
 <div class="glass-panel p-8 max-w-lg mx-auto">
     <h2 class="text-2xl font-bold mb-6 text-gray-800"><i class="bi bi-pencil-square text-primary mr-2"></i> Edit Data Karyawan</h2>
@@ -11,10 +17,6 @@ $k = $karyawan ?? [];
     </div>
     <?php endif; ?>
     <form method="POST" class="space-y-5">
-        <div>
-            <label class="block text-sm font-medium text-muted mb-2">NIK</label>
-            <input type="text" name="nik" value="<?= htmlspecialchars($k['nik'] ?? '') ?>" required class="glass-input w-full px-4 py-2.5" placeholder="NIK">
-        </div>
         <div>
             <label class="block text-sm font-medium text-muted mb-2">Nama Lengkap</label>
             <input type="text" name="nama" value="<?= htmlspecialchars($k['nama'] ?? '') ?>" required class="glass-input w-full px-4 py-2.5" placeholder="Nama Karyawan">
