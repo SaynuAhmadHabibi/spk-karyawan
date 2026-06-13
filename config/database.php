@@ -1,10 +1,39 @@
 <?php
-// Konfigurasi database
+/**
+ * Database Configuration & Connection
+ * 
+ * This file initializes the database connection and creates required tables.
+ * It's loaded on every request to ensure database availability.
+ * 
+ * Configuration:
+ * - Database credentials are defined here
+ * - Database and tables are auto-created if they don't exist
+ * - Default admin account is created on first setup
+ * 
+ * @author Development Team
+ * @version 1.0
+ */
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// DATABASE CONFIGURATION
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'spk_topsis');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// LOAD CONSTANTS & HELPERS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+require_once __DIR__ . '/../lib/Constants.php';
+require_once __DIR__ . '/../lib/Helper.php';
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// SESSION INITIALIZATION
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start([
